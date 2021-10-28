@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <myNode myAttr="value"/>
+  <myNode2 />
+</root>

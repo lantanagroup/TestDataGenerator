@@ -1,0 +1,285 @@
+<bad xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ActionConfiguration-bad.xsd">
+	<instances>
+		<instance name="CONF-001_header" rootContext="/cda:ClinicalDocument">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-001 (code is not 34133-9)" location="cda:code"/>
+			<action-set location="cda:code/@code" value="ABC"/>
+			<action-set location="cda:code/@displayName" value="XYZ"/>
+		</instance>
+		
+		<instance name="CONF-002_header" rootContext="/cda:ClinicalDocument">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-002 (missing documentationOf/serviceEvent)" location="."/>
+			<action-remove location="cda:documentationOf/cda:serviceEvent"/>
+		</instance>
+		
+		<instance name="CONF-003_header" rootContext="/cda:ClinicalDocument/cda:documentationOf/cda:serviceEvent">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-003 (incorrect @classCode)" location="."/>
+			<action-set location="@classCode" value="ACCM"/>
+		</instance>
+		
+		<instance name="CONF-004_header" rootContext="/cda:ClinicalDocument/cda:documentationOf/cda:serviceEvent/cda:effectiveTime">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-004 (missing low and high)" location="."/>
+			<action-remove location="cda:low"/>
+			<action-remove location="cda:high"/>
+		</instance>
+		
+		<instance name="CONF-005_header" rootContext="/cda:ClinicalDocument">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-005 (missing languageCode)" location="."/>
+			<action-remove location="cda:languageCode"/>
+		</instance>
+		
+		<instance name="CONF-006_header" rootContext="/cda:ClinicalDocument/cda:languageCode">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-006 (code is not in form of nn, or nn-CC)" location="."/>
+			<action-set location="@code" value="enUS"/>
+		</instance>
+		
+		<instance name="CONF-007_header" rootContext="/cda:ClinicalDocument">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-007 (missing templateId 10.20.1)" location="."/>
+			<action-remove location="cda:templateId"/>
+		</instance>
+		
+		<instance name="CONF-008-1_header" rootContext="/cda:ClinicalDocument">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-008 (incorrect templateId)" location="."/>
+			<action-set location="cda:templateId/@root" value="2.16.840.1.113883.10.20.2"/>
+		</instance>
+		
+		<instance name="CONF-008-2_header" rootContext="/cda:ClinicalDocument/cda:templateId">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-008 (includes @extension)" location="."/>
+			<action-add location=".">
+				<attribute name="extension" value="ABC"/>
+			</action-add>
+		</instance>
+		
+		<instance name="CONF-009_header" rootContext="/cda:ClinicalDocument/cda:effectiveTime">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-009 (effectiveTime not precise to the second)" location="."/>
+			<action-set location="@value" value="20000407"/>
+		</instance>
+		
+		<instance name="CONF-010_header" rootContext="/cda:ClinicalDocument/cda:effectiveTime">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-010 (effectiveTime does not include timezone offset)" location="."/>
+			<action-set location="@value" value="20000407130000"/>
+		</instance>
+		
+		<instance name="CONF-011_header" rootContext="/cda:ClinicalDocument">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-011 (missing recordTarget)" location="."/>
+			<action-remove location="cda:recordTarget"/>
+		</instance>
+		
+		<instance name="CONF-012_header" rootContext="/cda:ClinicalDocument">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-012 (missing recordTarget)" location="."/>
+			<action-remove location="cda:recordTarget"/>
+		</instance>
+		
+		<instance name="CONF-013_header" rootContext="/cda:ClinicalDocument/cda:author/cda:assignedAuthor">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-013 (missing assignedPerson and representedOrganization)" location="."/>
+			<action-remove location="cda:assignedPerson"/>
+			<action-remove location="cda:representedOrganization"/>
+		</instance>
+		
+		<instance name="CONF-015_header" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-add location=".">
+				<element>
+					<external>
+						<component xmlns="urn:hl7-org:v3">
+							<section>
+								<templateId root="2.16.840.1.113883.10.20.1.13"/>
+								<id root="623c71d7-7751-4a39-91d6-c70be8c81d9b"/>
+								<code code="48764-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Summary purpose"/>
+								<title>Summary purpose</title>
+							</section>
+						</component>
+					</external>
+				</element>
+			</action-add>
+			<action-comment value="ERROR - CONF-015 (multiple purpose sections)" location="cda:component[last()]"/>
+		</instance>
+		
+		<instance name="CONF-016_header" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[16]/cda:section">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-016 (missing code)" location="."/>
+			<action-remove location="cda:code"/>
+		</instance>
+		
+		<instance name="CONF-017_header" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[16]/cda:section/cda:code">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-017 (incorrect code)" location="."/>
+			<action-set location="@code" value="ABC"/>
+			<action-set location="@displayName" value="XYZ"/>
+		</instance>
+		
+		<instance name="CONF-018_header" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[16]/cda:section">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-018 (missing title)" location="."/>
+			<action-remove location="cda:title"/>
+		</instance>
+		
+		<instance name="CONF-019_header" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[16]/cda:section">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-019 (incorrect title, does not contain 'purpose')" location="."/>
+			<action-set location="cda:title/text()" value="ABC"/>
+		</instance>
+		
+		<instance name="CONF-020_header" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[16]/cda:section/cda:entry">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-020 (20.1.30 represented by observation instead of act)" location="."/>
+			<action-remove location="cda:act"/>
+			<action-add location=".">
+				<element>
+					<external>
+						<observation classCode="ALRT" moodCode="DEF" xmlns="urn:hl7-org:v3">
+							<templateId root="2.16.840.1.113883.10.20.1.30"/>
+							<code/>
+						</observation>
+					</external>
+				</element>
+			</action-add>
+		</instance>
+		
+		<instance name="CONF-021_header" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[16]/cda:section/cda:entry/cda:act">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-021 (incorrect @classCode)" location="."/>
+			<action-set location="@classCode" value="ACCM"/>
+		</instance>
+		
+		<instance name="CONF-022_header" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[16]/cda:section/cda:entry/cda:act">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-022 (incorrect @moodCode)" location="."/>
+			<action-set location="@moodCode" value="APT"/>
+		</instance>
+		
+		<instance name="CONF-023_header" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[16]/cda:section/cda:entry/cda:act">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-023 (missing statusCode)" location="."/>
+			<action-remove location="cda:statusCode"/>
+		</instance>
+		
+		<instance name="CONF-024_header" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[16]/cda:section/cda:entry/cda:act/cda:statusCode">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-024 (incorrect code)" location="."/>
+			<action-set location="@code" value="ABC"/>
+		</instance>
+		
+		<instance name="CONF-025_header" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[16]/cda:section/cda:entry/cda:act/cda:code">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-025 (incorrect code)" location="."/>
+			<action-set location="@code" value="ABC"/>
+			<action-set location="@displayName" value="XYZ"/>
+		</instance>
+		
+		<instance name="CONF-026_header" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[16]/cda:section/cda:entry/cda:act/cda:entryRelationship">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-026 (incorrect @typeCode)" location="."/>
+			<action-set location="@typeCode" value="CAUS"/>
+		</instance>
+		
+		<instance name="CONF-027_header" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[16]/cda:section/cda:entry/cda:act/cda:entryRelationship">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-027 (entryRelationship represented by organizer instead of act/encounter/observation/procedure/substanceAdministration/supply)" location="."/>
+			<action-remove location="cda:observation"/>
+			<action-add location=".">
+				<element>
+					<external>
+						<organizer classCode="BATTERY" moodCode="PERM" xmlns="urn:hl7-org:v3">
+							<statusCode/>
+						</organizer>
+					</external>
+				</element>
+			</action-add>
+		</instance>
+	</instances>
+</bad>

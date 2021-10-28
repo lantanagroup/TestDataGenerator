@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LantanaGroup.TestDataGenerator.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="NistRemoteValidatorEndpoint" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ValidationWebServiceSOAP11port_http</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

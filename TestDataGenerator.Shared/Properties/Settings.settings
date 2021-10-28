@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LantanaGroup.TestDataGenerator.Shared.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CDASchemaLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.\CDA.xsd</Value>
+    </Setting>
+    <Setting Name="NistRemoteValidatorEndpoint" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ValidationWebServiceSOAP11port_http</Value>
+    </Setting>
+    <Setting Name="ContentValidationIncludesWarnings" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ns0="http://validation.hitsp.nist.gov/xsd" xmlns:ns1="http://validation.hitsp.nist.gov" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://validation.hitsp.nist.gov" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation>ValidationWebService</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema xmlns:ax21="http://validation.hitsp.nist.gov/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://validation.hitsp.nist.gov/xsd">
+      <xs:complexType name="WSSpecification">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="specificationId" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="WSValidationResults">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="issue" nillable="true" type="ax21:WSIndividualValidationResult" />
+          <xs:element minOccurs="0" name="validationDate" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="validationTest" type="xs:boolean" />
+          <xs:element minOccurs="0" name="validationTime" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="WSIndividualValidationResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="context" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="severity" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="specification" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="test" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:ns="http://validation.hitsp.nist.gov" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://validation.hitsp.nist.gov">
+      <xs:element name="getAvailableValidationsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="return" nillable="true" type="ns0:WSSpecification" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="validateDocument">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="specificationId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="document" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="validateDocumentResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ns0:WSValidationResults" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="validateDocumentRequest">
+    <wsdl:part name="parameters" element="ns1:validateDocument" />
+  </wsdl:message>
+  <wsdl:message name="validateDocumentResponse">
+    <wsdl:part name="parameters" element="ns1:validateDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAvailableValidationsRequest" />
+  <wsdl:message name="getAvailableValidationsResponse">
+    <wsdl:part name="parameters" element="ns1:getAvailableValidationsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ValidationWebServicePortType">
+    <wsdl:operation name="validateDocument">
+      <wsdl:input wsaw:Action="urn:validateDocument" message="ns1:validateDocumentRequest" />
+      <wsdl:output wsaw:Action="urn:validateDocumentResponse" message="ns1:validateDocumentResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAvailableValidations">
+      <wsdl:input wsaw:Action="urn:getAvailableValidations" message="ns1:getAvailableValidationsRequest" />
+      <wsdl:output wsaw:Action="urn:getAvailableValidationsResponse" message="ns1:getAvailableValidationsResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ValidationWebServiceSOAP11Binding" type="ns1:ValidationWebServicePortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="validateDocument">
+      <soap:operation soapAction="urn:validateDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAvailableValidations">
+      <soap:operation soapAction="urn:getAvailableValidations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ValidationWebServiceSOAP12Binding" type="ns1:ValidationWebServicePortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="validateDocument">
+      <soap12:operation soapAction="urn:validateDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAvailableValidations">
+      <soap12:operation soapAction="urn:getAvailableValidations" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ValidationWebServiceHttpBinding" type="ns1:ValidationWebServicePortType">
+    <http:binding verb="POST" />
+    <wsdl:operation name="validateDocument">
+      <http:operation location="ValidationWebService/validateDocument" />
+      <wsdl:input>
+        <mime:content part="validateDocument" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="validateDocument" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAvailableValidations">
+      <http:operation location="ValidationWebService/getAvailableValidations" />
+      <wsdl:input>
+        <mime:content part="getAvailableValidations" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getAvailableValidations" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ValidationWebService">
+    <wsdl:port name="ValidationWebServiceSOAP11port_http" binding="ns1:ValidationWebServiceSOAP11Binding">
+      <soap:address location="http://xreg2.nist.gov:8080/ws/services/ValidationWebService" />
+    </wsdl:port>
+    <wsdl:port name="ValidationWebServiceSOAP12port_http" binding="ns1:ValidationWebServiceSOAP12Binding">
+      <soap12:address location="http://xreg2.nist.gov:8080/ws/services/ValidationWebService" />
+    </wsdl:port>
+    <wsdl:port name="ValidationWebServiceHttpport" binding="ns1:ValidationWebServiceHttpBinding">
+      <http:address location="http://xreg2.nist.gov:8080/ws/services/ValidationWebService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

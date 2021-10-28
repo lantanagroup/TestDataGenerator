@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4EAA2CCC-FCB0-4311-9063-8F7623D62BD3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LantanaGroup.TestDataGenerator.Configurator</RootNamespace>
+    <AssemblyName>TestDataGeneratorConfigurator</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionAddControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActionAddControl.Designer.cs">
+      <DependentUpon>ActionAddControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ActionControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActionControlBase.Designer.cs">
+      <DependentUpon>ActionControlBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ActionNameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ActionNameForm.Designer.cs">
+      <DependentUpon>ActionNameForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ActionRemoveControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActionRemoveControl.Designer.cs">
+      <DependentUpon>ActionRemoveControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ActionSetControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActionSetControl.Designer.cs">
+      <DependentUpon>ActionSetControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ActionCommentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActionCommentControl.Designer.cs">
+      <DependentUpon>ActionCommentControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddElementDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddElementDataForm.Designer.cs">
+      <DependentUpon>AddElementDataForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BuildXpathForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuildXpathForm.Designer.cs">
+      <DependentUpon>BuildXpathForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\ActionAddDisplay.cs" />
+    <Compile Include="Data\ActionDisplay.cs" />
+    <Compile Include="Data\ActionRemoveDisplay.cs" />
+    <Compile Include="Data\ActionSetDisplay.cs" />
+    <Compile Include="Data\ActionCommentDisplay.cs" />
+    <Compile Include="Data\InstanceDisplay.cs" />
+    <Compile Include="DisplayGenerationOutput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DisplayGenerationOutput.Designer.cs">
+      <DependentUpon>DisplayGenerationOutput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InheritSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InheritSelectForm.Designer.cs">
+      <DependentUpon>InheritSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NamespaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NamespaceForm.Designer.cs">
+      <DependentUpon>NamespaceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewConfigForm.Designer.cs">
+      <DependentUpon>NewConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ActionAddControl.resx">
+      <DependentUpon>ActionAddControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActionControlBase.resx">
+      <DependentUpon>ActionControlBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActionNameForm.resx">
+      <DependentUpon>ActionNameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActionRemoveControl.resx">
+      <DependentUpon>ActionRemoveControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActionSetControl.resx">
+      <DependentUpon>ActionSetControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActionCommentControl.resx">
+      <DependentUpon>ActionCommentControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddElementDataForm.resx">
+      <DependentUpon>AddElementDataForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuildXpathForm.resx">
+      <DependentUpon>BuildXpathForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DisplayGenerationOutput.resx">
+      <DependentUpon>DisplayGenerationOutput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InheritSelectForm.resx">
+      <DependentUpon>InheritSelectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NamespaceForm.resx">
+      <DependentUpon>NamespaceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewConfigForm.resx">
+      <DependentUpon>NewConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\LantanaGroup.TestDataGenerator.Configurator.Data.ActionAddDisplay.datasource" />
+    <None Include="Properties\DataSources\LantanaGroup.TestDataGenerator.Configurator.Data.ActionCommentDisplay.datasource" />
+    <None Include="Properties\DataSources\LantanaGroup.TestDataGenerator.Configurator.Data.ActionRemoveDisplay.datasource" />
+    <None Include="Properties\DataSources\LantanaGroup.TestDataGenerator.Configurator.Data.ActionSetDisplay.datasource" />
+    <None Include="Properties\DataSources\LantanaGroup.TestDataGenerator.Configurator.Data.InstanceDisplay.datasource" />
+    <None Include="Properties\DataSources\LantanaGroup.TestDataGenerator.Shared.Data.Instance.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TestDataGenerator.Shared\TestDataGenerator.Shared.csproj">
+      <Project>{C2C44023-7753-465F-91C1-54A49F62DD83}</Project>
+      <Name>TestDataGenerator.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestDataGenerator\TestDataGenerator.csproj">
+      <Project>{2BD12697-1348-463E-8566-492AEDF75E9C}</Project>
+      <Name>TestDataGenerator</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

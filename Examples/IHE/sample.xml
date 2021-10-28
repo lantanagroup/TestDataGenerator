@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="hai-display.xsl"?>
+<root>
+	<test></test>
+	<author>
+		<assignedAuthor>
+			<name>Test</name>
+		</assignedAuthor>
+	</author>
+</root>

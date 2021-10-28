@@ -1,0 +1,37 @@
+<ActionConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ActionConfiguration.xsd">
+  <good>
+    <instances>
+      <instance name="test3">
+        <action-remove location="/cda:ClinicalDocument/cda:documentationOf"/>
+        <action-remove location="/cda:ClinicalDocument/cda:author/cda:time/@value"/>
+        <action-remove location="/cda:ClinicalDocument/cda:title"/>
+      </instance>
+      <instance name="test4" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component">
+        <filter>
+          <specificRowCount value="0" section="Results"/>
+        </filter>
+        <action-remove location="cda:entry/cda:observation/cda:effectiveTime"/>
+        <action-set location="cda:entry/cda:observation/@typeCode" value="INVALID_TYPE_CODE"/>
+      </instance>
+    </instances>
+  </good>
+	<bad>
+    <instances>
+		  <instance name="test1">
+			  <filter>
+				  <randomRowCount/>
+			  </filter>
+			  <action-remove location="/cda:ClinicalDocument/cda:documentationOf"/>
+			  <action-remove location="/cda:ClinicalDocument/cda:author/cda:time/@value"/>
+			  <action-remove location="/cda:ClinicalDocument/cda:title"/>
+		  </instance>
+		  <instance name="test2" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component">
+			  <filter>
+				  <specificRowCount value="23" section="Results"/>
+			  </filter>
+			  <action-remove location="cda:entry/cda:observation/cda:effectiveTime"/>
+			  <action-set location="cda:entry/cda:observation/@typeCode" value="INVALID_TYPE_CODE"/>
+		  </instance>
+    </instances>
+	</bad>
+</ActionConfiguration>

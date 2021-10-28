@@ -1,0 +1,2059 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="CDA.xsl"?>
+<!-- Created by Lantana Consulting Group for NIST -->
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:voc="urn:hl7-org:v3/voc" xmlns:cda="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc">
+	<!-- 
+********************************************************
+CDA Header
+********************************************************
+-->
+	<typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+	<templateId root="2.16.840.1.113883.10.20.1"/>
+	<id root="%Header_DocumentIdRoot%" extension="%Header_DocumentId%"/>
+	<code code="34133-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Summarization of episode note"/>
+	<title>%Header_OrganizationName% Continuity of Care Document</title>
+	<effectiveTime value="20000407130000+0500"/>
+	<confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25"/>
+	<languageCode code="en-US"/>
+	<recordTarget>
+		<patientRole>
+			<id extension="%Header_PatientId%" root="%Header_PatientIdRoot%"/>
+			<id extension="%Header_PatientId2%" root="%Header_PatientIdRoot2%"/>
+			<addr>
+				<streetAddressLine>%Header_AddressStreet%</streetAddressLine>
+				<city>%Header_AddressCity%</city>
+				<state>%Header_AddressState%</state>
+				<postalCode>%Header_AddressPostal%</postalCode>
+			</addr>
+			<telecom value="%Header_Telephone%"/>
+			<patient>
+				<name>
+					<given>%Header_Given%</given>
+					<family>%Header_Family%</family>
+				</name>
+				<administrativeGenderCode code="%Header_Gender%" codeSystem="2.16.840.1.113883.5.1"/>
+				<birthTime value="%Header_PatientDOB%"/>
+			</patient>
+			<providerOrganization>
+				<id root="%Header_OrganizationId%"/>
+				<name>%Header_OrganizationName%</name>
+			</providerOrganization>
+		</patientRole>
+	</recordTarget>
+	<author>
+		<time value="%Header_AuthorTime%"/>
+		<assignedAuthor>
+			<id root="%Header_AuthorIdRoot%" extension="%Header_AuthorIdExt%"/>
+			<assignedPerson>
+				<name>
+					<given>%Header_AuthorGiven%</given>
+					<family>%Header_AuthorFamily%</family>
+				</name>
+			</assignedPerson>
+			<representedOrganization>
+				<id root="%Header_OrganizationId%"/>
+				<name>%Header_OrganizationName%</name>
+			</representedOrganization>
+		</assignedAuthor>
+	</author>
+	<informant>
+		<assignedEntity>
+			<id nullFlavor="NI"/>
+			<representedOrganization>
+				<id root="%Header_OrganizationId%"/>
+				<name>%Header_OrganizationName%</name>
+			</representedOrganization>
+		</assignedEntity>
+	</informant>
+	<custodian>
+		<assignedCustodian>
+			<representedCustodianOrganization>
+				<id root="%Header_OrganizationId%"/>
+				<name>%Header_OrganizationName%</name>
+			</representedCustodianOrganization>
+		</assignedCustodian>
+	</custodian>
+	<documentationOf>
+		<serviceEvent classCode="PCPR">
+			<effectiveTime>
+				<low value="19320924"/>
+				<high value="20000407"/>
+			</effectiveTime>
+			<performer typeCode="PRF">
+				<functionCode code="PCP" codeSystem="2.16.840.1.113883.5.88"/>
+				<time>
+					<low value="1990"/>
+					<high value="20000407"/>
+				</time>
+				<assignedEntity>
+					<id root="%Header_AuthorIdRoot%" extension="%Header_AuthorIdExt%"/>
+					<assignedPerson>
+						<name>
+							<given>%Header_AuthorGiven%</given>
+							<family>%Header_AuthorFamily%</family>
+						</name>
+					</assignedPerson>
+					<representedOrganization>
+						<id root="%Header_OrganizationId%"/>
+						<name>%Header_OrganizationName%</name>
+					</representedOrganization>
+				</assignedEntity>
+			</performer>
+		</serviceEvent>
+	</documentationOf>
+	<!-- 
+********************************************************
+CDA Body
+********************************************************
+-->
+	<component>
+		<structuredBody>
+			<!-- 
+********************************************************
+Advance Directives section (DONE TOKENIZING)
+********************************************************
+-->
+			<component>
+				<!-- SHOULD [1..1] CCD-77 section/templateId 20.1.1-->
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.1.1"/>
+					<!-- SHALL [1..1] CCD-78 code -->
+					<!-- SHALL [1..1] CCD-79 code/@code = '42348-3' "Advance directives" LOINC -->
+					<code code="42348-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Advance Directives"/>
+					<!-- SHALL [1..1] CCD-80 title -->
+					<!-- SHOULD [1..1] CCD-81, title/text() valued with case-insensitive... -->
+					<title>Advance Directives</title>
+					<!-- SHALL [1..1] CCD-77 text -->
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Directive</th>
+									<th>Description</th>
+									<th>Verification</th>
+									<th>Supporting Document(s)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Resuscitation</td>
+									<td>Do not resuscitate</td>
+									<td>Current and verified</td>
+									<td>N/A</td>
+								</tr>
+								<tr>
+									<td>%AdvanceDirective_TypeDisplay%</td>
+									<td>
+										<content ID="%AdvanceDirective_TextReference%">%AdvanceDirective_DirectiveDisplay%</content>
+									</td>
+									<td>Dr. Robert Dolin, Nov 07, 1999</td>
+									<td>
+										<!-- SHOULD [1..1] CCD-105 linkHtml/@href should exist and match that of observation/reference/externalDocument/text/reference -->
+										<linkHtml href="AdvanceDirective.b50b7910-7ffb-4f4c-bbe4-177ed68cbbf3.pdf">Advance directive</linkHtml>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<entry typeCode="DRIV">
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.1.17"/>
+							<!-- Advance directive observation template -->
+							<id root="9b54c3c9-1673-49c7-aef9-b037ed72ed27"/>
+							<code code="304251008" codeSystem="2.16.840.1.113883.6.96" displayName="Resuscitation"/>
+							<statusCode code="completed"/>
+							<effectiveTime value="19900418"/>
+							<value xsi:type="CD" code="304253006" codeSystem="2.16.840.1.113883.6.96" displayName="Do not resuscitate"/>
+							<entryRelationship typeCode="REFR">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.1.37"/>
+									<!-- Advance directive status observation template -->
+									<code code="33999-4" codeSystem="2.16.840.1.113883.6.1" displayName="Status"/>
+									<statusCode code="completed"/>
+									<value xsi:type="CE" code="15240007" codeSystem="2.16.840.1.113883.6.96" displayName="Current and verified"/>
+								</observation>
+							</entryRelationship>
+						</observation>
+					</entry>
+					<!-- SHOULD [1..*] CCD-77 entry (clinical statements) -->
+					<entry typeCode="DRIV">
+						<!-- SHALL [1..1] CCD-82 observation/templateId 20.1.17 -->
+						<!-- SHALL [1..1] CCD-83 observation/@classCode='OBS' -->
+						<!-- SHALL [1..1] CCD-84 observation/@moodCode='EVN' -->
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.1.17"/>
+							<!-- SHALL [1..*] CCD-85 id -->
+							<id root="%AdvanceDirective_ObservationId%"/>
+							<!-- SHALL [1..1] CCD-89 code -->
+							<!-- MAY [1..1] CCD-90 code/@code ValueSet 2.16.840.1.113883.1.11.20.2 AdvanceDirectiveTypeCode STATIC -->
+							<code code="%AdvanceDirective_TypeCode%" codeSystem="%AdvanceDirective_TypeCodeSystem%" displayName="%AdvanceDirective_TypeDisplay%"/>
+							<!-- SHALL [1..1] CCD-86 statusCode -->
+							<!-- SHALL [1..1] CCD-87 statusCode/@code='completed' -->
+							<statusCode code="completed"/>
+							<!-- SHOULD [1..1] CCD-88 effectiveTime -->
+							<effectiveTime value="%AdvanceDirective_EffectiveTime%"/>
+							<value xsi:type="CD" code="%AdvanceDirective_DirectiveCode%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="%AdvanceDirective_DirectiveDisplay%">
+								<originalText>
+									<reference value="#%AdvanceDirective_TextReference%"/>
+								</originalText>
+							</value>
+							<!-- MAY [1..*] CCD-93 participant (verification of advance directive) -->
+							<!-- ? CCD-92 verification may be represented with participant/templateId 20.1.58 -->
+							<!-- SHALL [1..1] CCD-94 participant/@typeCode='VRF' -->
+							<participant typeCode="VRF">
+								<templateId root="2.16.840.1.113883.10.20.1.58"/>
+								<!-- TODO: comment 20.1.58 -->
+								<!-- SHOULD [1..1] CCD-95 time -->
+								<!-- SHALL [1..1] CCD-96 time datatype must be TS -->
+								<time value="%AdvanceDirective_VerificationTime%"/>
+								<participantRole>
+									<id root="%AdvanceDirective_VerificationId%"/>
+									<playingEntity>
+										<name>
+											<prefix>Dr.</prefix>
+											<family>Dolin</family>
+											<given>Robert</given>
+										</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+							<!-- SHALL [1..1] CCD-98 entryRelationship -->
+							<entryRelationship typeCode="REFR">
+								<!-- SHALL [1..1] CCD-98 observation with templateId 20.1.37 -->
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.1.37"/>
+									<!-- SHALL [1..1] CCD-99 advance directive status 20.1.37 must conform to status observation 20.1.57 -->
+									<templateId root="2.16.840.1.113883.10.20.1.57"/>
+									<code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Status"/>
+									<statusCode code="completed"/>
+									<!-- SHALL [1..1] CCD-100 value/@code ValueSet 2.16.840.1.113883.1.11.20.1 AdvanceDirectiveStatusCode STATIC -->
+									<value xsi:type="CE" code="%AdvanceDirective_StatusCode%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="%AdvanceDirective_StatusDisplay%"/>
+								</observation>
+							</entryRelationship>
+							<!-- comment -->
+							<entryRelationship typeCode="SUBJ">
+								<act classCode="ACT" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.1.40"/>
+									<templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.2"/>
+									<code code="48767-8" displayName="Annotation Comment" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+									<text>This is a comment about the advance directive.</text>
+								</act>
+							</entryRelationship>
+							<!-- SHALL [0..*] CCD-101 Advance Directive Reference shall be represented with reference/externalDocument -->
+							<!-- SHALL [1..1] CCD-102 reference -->
+							<!-- SHALL [1..1] CCD-103 reference/@typeCode='REFR' -->
+							<reference typeCode="REFR">
+								<!-- SHALL [1..1] CCD-101 externalDocument -->
+								<externalDocument>
+									<templateId root="2.16.840.1.113883.10.20.1.36"/>
+									<!-- SHALL [1..*] CCD-104 id -->
+									<id root="%AdvanceDirective_ExternalDocId%"/>
+									<code code="%AdvanceDirective_ExternalDocPurposeCode%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Advance directive"/>
+									<!-- MAY [1..1] CCD-105 text/reference -->
+									<!-- MAY [1..1] CCD-106 text/@mediaType -->
+									<text mediaType="%AdvanceDirective_ExternalDocType%">
+										<reference value="%AdvanceDirective_ExternalDocReference%"/>
+									</text>
+								</externalDocument>
+							</reference>
+						</observation>	
+					</entry>
+				</section>
+			</component>
+			<!-- 
+********************************************************
+Allergies and Alerts section (DONE TOKENIZING)
+********************************************************
+-->
+			<component>
+				<section>
+					<!-- Alerts section template -->
+					<!--SHOULD [1..1] templateId CONF-256-->
+					<templateId root="2.16.840.1.113883.10.20.1.2"/>
+					<!--SHALL [1..1] code CONF-258, CONF-259-->
+					<code code="48765-2" displayName="Allergies, adverse reactions, alerts" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+					<!--SHALL [1..1] title CONF-260-->
+					<!--SHOULD [1..1] title CONF-261 'be valued with a case-insensitive language-insensitive text string containing “alert” and/or “allergies and adverse recations"'-->
+					<title>Allergies, Adverse Reactions, Alerts</title>
+					<!--SHALL [1..1] text CONF-256-->
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Substance</th>
+									<th>Reaction</th>
+									<th>Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<content ID="%Allergy1_SubstanceReference%">%Allergy1_DrugDisplay%</content>
+									</td>
+									<td>
+										<content ID="%Allergy1_ReactionReference%">%Allergy1_ReactionDisplay%</content>
+									</td>
+									<td>
+										<content ID="%Allergy1_StatusReference%">%Allergy1_StatusDisplay%</content>
+									</td>
+									<td>
+										<content ID="%Allergy1_SeverityReference%">%Allergy1_SeverityDisplay%</content>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<!--+++ALL CDA CONSOLIDATION EFFORTS ARE IN THE FIRST ENTRY+++-->
+					<!--SHOULD [0..*] entry CONF-256-->
+					<entry typeCode="DRIV">
+						<!--SHOULD [1..*] act CONF-256-->
+						<!--CCD Section 3.8.2.1.1-->
+						<!--SHALL [1..1] entry/act/@classCode="ACT" CONF-146-->
+						<!--SHALL [1..1] entry/act/@moodeCode="EVN" CONF-147-->
+						<act classCode="ACT" moodCode="EVN">
+							<!-- Problem act template -->
+							<!--SHALL [1..1] templateId CONF-145-->
+							<templateId root="2.16.840.1.113883.10.20.1.27"/>
+							<!--SHALL [1..*] id CONF-148-->
+							<id root="%Allergy1_IdRoot%"/>
+							<!--SHALL [1..1] code/@nullFlavor="NA" CONF-149-->
+							<code nullFlavor="NA"/>
+							<!--MAY [0..1] effectiveTime CONF-150-->
+							<effectiveTime value="%Allergy1_Time%"/>
+							<!--SHALL [1..*] entryRelationship CONF-151-->
+							<!--**CONF's 152 and 153 seem duplicative-->
+							<!--**CONF-152: A problem act MAY reference a problem observation, alert observation (see section 3.8 Alerts) or other clinical statement that is the subject of concern, by settin“Act / entryRelationship / @typeCode” to be “SUBJ” 2.16.840.1.113883.5.1002 ActRelationshipType STATIC.-->
+							<!--**CONF-153: The target of a problem act with Act / entryRelationship / @typeCode=”SUBJ” SHOULD be a problem observation (in the Problem section) or alert observAlert section, see section 3.8 Alerts), but MAY be some other clinical statement.-->
+							<entryRelationship typeCode="SUBJ">
+								<!--SHOULD [1..*] observation CONF-256-->
+								<!--SHALL [1..1] observation/@classCode="OBS" CDA R2-->
+								<!--SHALL [1..1 observation/@moodCode="EVN" CONF-263-->
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- Alert observation template -->
+									<!--SHALL [1..1] templateId CONF-262-->
+									<templateId root="2.16.840.1.113883.10.20.1.18"/>
+									<id root="4adc1020-7b14-11db-9fe1-0800200c9a66"/>
+									<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+									<!--SHALL [1..1] statusCode CONF-264-->
+									<!--SHALL [1..1] statusCode/@code="completed" CONF-265-->
+									<statusCode code="completed"/>
+									<!--MAY [0..1] effectiveTime CONF-266-->
+									<effectiveTime value="20110215"/>
+									<!--CONF-267: The value for “Observation / value” in an alert observation MAY be selected from ValueSet 2.16.840.1.113883.1.11.20.4 AlertTypeCode STATIC 20061017.-->
+									<value xsi:type="CD" code="%Allergy1_TypeCode%" displayName="%Allergy1_TypeDisplay%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+									<!--SHOULD [1..*] participant CONF-273-->
+									<!--SHALL [1..1] participant/@typeCode="CSM" CONF-275-->
+									<participant typeCode="CSM">
+										<!--SHALL [1..1] participant/participantRole/@classCode="MANU" CONF-276-->
+										<participantRole classCode="MANU">
+											<!--SHALL [1..1] participant/participantRole/playingEntity CONF-274-->
+											<!--SHALL [1..1] participant/participantRole/playingEntity/@classCode="MMAT" CONF-277-->
+											<playingEntity classCode="MMAT">
+												<!--SHALL [1..1] code CONF-278-->
+												<!--SHOULD [1..1] code CONF-279 "The value for “participant / participantRole / playingEntity / code” in an agent
+participation SHOULD be selected from the RxNorm (2.16.840.1.113883.6.88) code
+system for medications, and from the CDC Vaccine Code (2.16.840.1.113883.6.59) code
+system for immunizations."-->
+												<code code="%Allergy1_DrugCode%" codeSystem="%Allergy1_DrugCodeSystem%" displayName="%Allergy1_DrugDisplay%" codeSystemName="%Allergy1_DrugCodeSystemName%">
+													<originalText>
+														<reference value="%Allergy1_SubstanceReference%"/>
+													</originalText>
+												</code>
+											</playingEntity>
+										</participantRole>
+									</participant>
+									<!--SHALL [1..*] 'SOURCE OF INFORMATION' CONF-269-->
+									<entryRelationship typeCode="REFR">
+										<!--SHALL [1..1] observation CONF-523-->
+										<!--SHALL [1..1] entryRelationship/@typeCode="REFR" CONF-524-->
+										<!--SHALL [1..1] observation CONF-525-->
+										<!--SHALL [1..1] observation/@classCode="OBS" CONF-526-->
+										<!--SHALL [1..1] observation/@moodCode="EVN" CONF-527-->
+										<observation classCode="OBS" moodCode="EVN">
+											<!--SHALL [1..1] code CONF-530-->
+											<!--SHALL [1..1] code/@code="48766-0" code/@displayName="Information source" code/@codeSystem="2.16.840.1.113883.6.1" code/@codeSystemName="LOINC" CONF-531-->
+											<code code="48766-0" displayName="Information Source" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+											<!--SHALL [1..1] statusCode CONF-528-->
+											<!--SHALL [1..1] statusCode/@code="completed" CONF-529-->
+											<statusCode code="completed"/>
+											<!--SHALL [1..1] value CONF-532-->
+											<value xsi:type="ST" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+												<!--SHALL [1..1] text string = "Unknown" CONF-533-->Unknown</value>
+										</observation>
+									</entryRelationship>
+									<!--Status Observation entryRelationship-->
+									<!--SHALL [1..1] entryRelationship/@typeCode="REFR"/observation CONF-509-->
+									<entryRelationship typeCode="REFR">
+										<!--MAY [0..1] observation CONF-270-->
+										<!--SHALL [1..1] observation/@classCode="OBS" CONF-510-->
+										<!--SHALL [1..1] observation/@moodCode="EVN" CONF-511-->
+										<observation classCode="OBS" moodCode="EVN">
+											<!-- Alert status observation template -->
+											<!--SHALL [1..1] templateId CONF-271-->
+											<templateId root="2.16.840.1.113883.10.20.1.39"/>
+											<!--Conformant status observation template-->
+											<!--SHALL [1..1] templateId CONF-271-->
+											<!--SHALL [1..1] templateId CONF-508-->
+											<templateId root="2.16.840.1.113883.10.20.1.57"/>
+											<!--SHALL [1..1] code CONF-512-->
+											<!--SHALL [1..1] code/@code="33999-4" code@/displayName="Status" code/@codeSystem="2.16.840.1.113883.6.1" code/@codeSystemName="LOINC" CONF-513-->
+											<code code="33999-4" displayName="Status" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+											<!--SHALL [1..1] statusCode CONF-514-->
+											<!--SHALL [1..1] statusCode/@code="completed" CONF-515-->
+											<statusCode code="completed"/>
+											<!--SHALL [1..1] value/@xsi:type="CE" CONF-516-->
+											<value xsi:type="CE" code="%Allergy1_StatusCode%" codeSystem="2.16.840.1.113883.6.96" displayName="%Allergy1_StatusDisplay%" codeSystemName="SNOMED CT" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+												<originalText>
+													<reference value="%Allergy1_StatusReference%"/>
+												</originalText>
+											</value>
+										</observation>
+									</entryRelationship>
+									<!--Reaction Observation entryRelationship-->
+									<!--SHALL [1..1] entryRelationship/@typeCode="MFST"/observation CONF-281-->
+									<entryRelationship typeCode="MFST" inversionInd="true">
+										<!--MAY [1..*] observation CONF-280-->
+										<!--SHALL [1..1] observation/@classCode="OBS" CONF-283-->
+										<!--SHALL [1..1] observation/@moodCode="EVN" CONF-284-->
+										<observation classCode="OBS" moodCode="EVN">
+											<!-- Reaction observation template -->
+											<!--SHALL [1..1] templateId CONF-282-->
+											<templateId root="2.16.840.1.113883.10.20.1.54"/>
+											<!--SHALL [1..1] code CDA R2-->
+											<code nullFlavor="NI"/>
+											<!--SHALL [1..1] statusCode CONF-285-->
+											<!--SHALL [1..1] statusCode/@code="completed" CONF-286-->
+											<statusCode code="completed"/>
+											<value xsi:type="CD" code="%Allergy1_ReactionCode%" displayName="%Allergy1_ReactionDisplay%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+												<originalText>
+													<reference value="%Allergy1_ReactionReference%"/>
+												</originalText>
+											</value>
+											<!--Severity Observation entryRelationship-->
+											<!--MAY [1..1] Severity Observation CONF-280-->
+											<!--SHALL [1..1] entryRelationship/@typeCode="SUBJ" CONF-288-->
+											<entryRelationship typeCode="SUBJ">
+												<!--SHALL [1..1] observation/@classCode="OBS" CONF-289-->
+												<!--SHALL [1..1] observation/@moodCode="EVN" CONF-290-->
+												<observation classCode="OBS" moodCode="EVN">
+													<!--SHALL [1..1] templateId CONF-287-->
+													<templateId root="2.16.840.1.113883.10.20.1.55"/>
+													<!--SHALL [1..1] code CONF-293-->
+													<!--SHALL [1..1] code/@code="SEV" code/@displayName="Severity Observation" code/@codeSystem="2.16.840.1.113883.5.4" code/@codeSystemName="ActCode" CONF-294-->
+													<code code="SEV" displayName="Severity Observation" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode"/>
+													<!--SHALL [1..1] statusCode CONF-291-->
+													<!--SHALL [1..1] statusCode/@code="completed" CONF-292-->
+													<statusCode code="completed"/>
+													<!--SHALL [1..1] value CONF-295-->
+													<value xsi:type="CD" code="%Allergy1_SeverityCode%" displayName="%Allergy1_SeverityDisplay%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
+														<originalText>
+															<reference value="%Allergy1_SeverityReference%"/>
+														</originalText>
+													</value>
+												</observation>
+											</entryRelationship>
+											<!--Reaction Intervention entryRelationship-->
+											<!--MAY [1..*] Reaction Intervention Observation CONF-280-->
+											<!--SHALL [1..1] entryRelationship/@typeCode="RSON" CONF-296-->
+											<entryRelationship typeCode="RSON">
+												<!--SHALL [1..1] 'CLINICAL STATEMENT' CONF-297-->
+												<procedure classCode="PROC" moodCode="EVN">
+													<templateId root="2.16.840.1.113883.10.20.1.29"/>
+													<id nullFlavor="NI"/>
+													<code nullFlavor="NI" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+													<statusCode nullFlavor="NI"/>
+													<effectiveTime nullFlavor="NA"/>
+												</procedure>
+											</entryRelationship>
+										</observation>
+									</entryRelationship>
+								</observation>
+							</entryRelationship>
+						</act>
+					</entry>
+				</section>
+			</component>
+			<!-- 
+********************************************************
+Encounters section (DONE TOKENIZING)
+********************************************************
+-->
+			<component>
+				<section>
+					<!--SHOULD [1..1] templateId CONF-453-->
+					<!--SHALL NOT [1..*] templateId CONF-453-->
+					<templateId root="2.16.840.1.113883.10.20.1.3"/>
+					<!-- SHALL [1..1] code CONF-454, CONF-455-->
+					<code code="46240-8" displayName="History of encounters" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+					<!-- SHALL [1..1] title CONF-456-->
+					<!-- SHOULD [1..1] title CONF-457 'be valued with a case-insensitive language-insensitive text string containing "encounters"'-->
+					<title>Encounters</title>
+					<!-- SHALL [1..1] Narritive block CONF-453 -->
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Encounter</th>
+									<th>Location</th>
+									<th>Date</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Checkup Examination</td>
+									<td>Good Health Clinic</td>
+									<td>Apr 07, 2000</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<!-- SHOULD [1..*] clinical statements CONF-453 -->
+					<entry typeCode="DRIV">
+						<!-- SHALL [1..*] Encounters CONF-458 -->
+						<!-- SHALL [1..1] Encounter/@classCode = "ENC" CONF-458 -->
+						<!-- SHALL [1..1] Encounter/@moodCode = "EVN" CONF-459 -->
+						<encounter classCode="ENC" moodCode="EVN">
+							<!-- SHOULD [1..*] encounter activities CONF-453 -->
+							<templateId root="2.16.840.1.113883.10.20.1.21"/>
+							<!-- SHALL [1..*] id CONF-461 -->
+							<id root="36e3e930-7b14-11db-9fe1-0800200c9a66"/>
+							<!-- SHOULD [1..1] code CONF-462 -->
+							<!-- SHOULD [1..1] code value selected from ActCode DYNAMIC CONF-463 -->
+							<code code="%Encounter_Code%" codeSystem="%Encounter_CodeSystem%" codeSystemName="%Encounter_CodeSystemName%" displayName="%Encounter_Display%"/>
+							<!-- MAY [0..1] effectiveTime CONF-464 -->
+							<effectiveTime value="%Encounter_EffectiveTime%"/>
+							<!-- MAY [1..*] performer CONF-466 -->
+							<performer typeCode="PRF">
+								<time>
+									<low value="1990"/>
+									<high value="20000407"/>
+								</time>
+								<assignedEntity>
+									<id root="20cf14fb-b65c-4c8c-a54d-b0cca834c18c"/>
+									<!-- MAY [1..1] code CONF-467 -->
+									<code code="dd0000000X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="NUCC" displayName="Behavioral Health and Social Services"/>
+									<assignedPerson>
+										<name>
+											<given>%Encounter_PerformerGiven%</given>
+											<family>%Encounter_PerformerFamily%</family>
+										</name>
+									</assignedPerson>
+									<representedOrganization>
+										<id root="%Encounter_LocationId%"/>
+										<name>%Encounter_LocationName%</name>
+									</representedOrganization>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<templateId root="2.16.840.1.113883.10.20.1.45"/>
+								<participantRole classCode="SDLOC">
+									<code code="COMM" codeSystem="2.16.840.1.113883.5.111" displayName="Community"/>
+									<playingEntity classCode="PLC">
+										<name>Good Health Community Clinic</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+				</section>
+			</component>
+			<!-- 
+********************************************************
+Family History section
+********************************************************
+-->
+			<component>
+				<!-- SHOULD [1..1] CCD-184 section with templateId 20.1.4 -->
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.1.4"/>
+					<!-- SHALL [1..1] CCD-185 code -->
+					<!-- SHALL [1..1] CCD-186 code/@code='10157-6' 'History of family member diseases' LOINC -->
+					<code code="10157-6" displayName="History of family member diseases" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+					<!-- SHALL [1..1] CCD-187 title -->
+					<!-- SHOULD [1..1] CCD-188, title/text() valued with case-insensitive... -->
+					<title>Family history</title>
+					<!-- SHALL [1..1] CCD-184 text -->
+					<text>
+						<paragraph>Father (deceased)</paragraph>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Diagnosis</th>
+									<th>Age At Onset</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Myocardial Infarction (cause of death)</td>
+									<td>57</td>
+								</tr>
+								<tr>
+									<td>Hypertension</td>
+									<td>40</td>
+								</tr>
+							</tbody>
+						</table>
+						<paragraph>Mother (alive)</paragraph>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Diagnosis</th>
+									<th>Age At Onset</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Asthma</td>
+									<td>30</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<!-- SHALL NOT [0..0] CCD-189 subject -->
+					<!-- <subject/> -->
+					<!-- SHOULD [1..*] CCD-184 family history observation or organizer -->
+					<entry typeCode="DRIV">
+						<!-- SHALL [1..1] CCD-200 family history organizer represented with organizer -->
+						<!-- SHALL [1..1] CCD-201 @classCode='CLUSTER' -->
+						<!-- SHALL [1..1] CCD-202 @moodCode='EVN' -->
+						<organizer moodCode="EVN" classCode="CLUSTER">
+							<!-- SHALL [1..1] CCD-200 family history organizer template id 20.1.23 -->
+							<templateId root="2.16.840.1.113883.10.20.1.23"/>
+							<!-- SHALL [1..1] CCD-203 statusCode -->
+							<!-- SHALL [1..1] CCD-204 statusCode/@code='completed' -->
+							<statusCode code="completed"/>
+							<!-- SHALL [1..1] CCD-208 subject -->
+							<subject>
+								<relatedSubject classCode="PRS">
+									<code code="%FamilyHistory_RelativeCode%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="%FamilyHistory_RelativeDisplay%"/>
+									<subject>
+										<administrativeGenderCode code="%FamilyHistory_RelativeGenderCode%" codeSystem="2.16.840.1.113883.5.1" displayName="%FamilyHistory_RelativeGenderDisplay%"/>
+										<birthTime value="%FamilyHistory_RelativeBirth%"/>
+									</subject>
+								</relatedSubject>
+							</subject>
+							<!-- SHALL [1..*] CCD-205 component -->
+							<component>
+								<!-- SHOULD [1..1] CCD-206 family history organizer's component should be family history observation with template id 20.1.42 -->
+								<!-- SHALL [1..1] CCD-190 family history observation (template 20.1.22) represented with observation -->
+								<!-- SHALL [1..1] CCD-191 observation/@moodCode='EVN' -->
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- SHALL [1..1] CCD-190 template 20.1.22 (family history observation)-->
+									<templateId root="2.16.840.1.113883.10.20.1.22"/>
+									<!-- SHALL [1..1] CCD-196 template 20.1.42 (cause of death, a type of family history obs) -->
+									<templateId root="2.16.840.1.113883.10.20.1.42"/>
+									<!-- SHALL [1..*] CCD-192 id -->
+									<id root="%FamilyHistory_ProblemId%"/>
+									<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+									<!-- SHALL [1..1] CCD-193 statusCode -->
+									<!-- SHALL [1..1] CCD-194 statusCode/@code='completed' -->
+									<statusCode code="completed"/>
+									<!-- SHOULD [1..*] CCD-195 effectiveTime -->
+									<effectiveTime nullFlavor="NA"/>
+									<value xsi:type="CD" code="%FamilyHistory_ProblemCode%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="%FamilyHistory_ProblemDisplay%"/>
+									<!-- SHALL [1..*] CCD-197 family history cause of death in entryRelationship with a @typeCode -->
+									<!-- SHALL [1..1] CCD-198 at least one family history cause of death entryRelationship must have @type='CAUS' -->
+									<entryRelationship typeCode="CAUS">
+										<observation classCode="OBS" moodCode="EVN">
+											<id root="%FamilyHistory_CauseOfDeathId%"/>
+											<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+											<statusCode code="completed"/>
+											<value xsi:type="CD" code="%FamilyHistory_CauseOfDeathCode%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="%FamilyHistory_CauseOfDeathDisplay%"/>
+										</observation>
+									</entryRelationship>
+									<!-- MAY [0..1] CCD-207 problem status observation -->
+									<!-- COPY OF PROBLEM STATUS OBSERVATION FROM PROBLEMS SAMPLE 
+											_____________________________________________________________ -->
+									<entryRelationship typeCode="REFR">
+										<!-- SHALL conform to status observation (templateId 2.16.840.1.113883.10.20.1.57) CCD-163 -->
+										<!-- SHALL [1..1) Observation (a status observation SHALL be an observation CCD-508] -->
+										<!-- SHALL [1..1] @ classCode "OBS" CCD-510-->
+										<!-- SHALL [1..1] @moodCode "EVN" CCD-511 -->
+										<observation classCode="OBS" moodCode="EVN">
+											<!-- status observation template -->
+											<templateId root="2.16.840.1.113883.10.20.1.57"/>
+											<!-- Problem status observation template -->
+											<templateId root="2.16.840.1.113883.10.20.1.50"/>
+											<!-- SHALL [1..1] observation/code ="33999-4" STATIC CCD-513 -->
+											<code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Status"/>
+											<!-- SHALL [1..1] statusCode CCD- 514-->
+											<!-- SHALL [1..1] @code= completed CCD-515 -->
+											<statusCode code="completed"/>
+											<!-- SHALL [1..1] observationValue ="CE" CCD-516 (.57)-->
+											<!-- SHALL [1..1] observationValue ="CE" SHALL be from ValueSet 2.16.840.1.113883.1.11.20.13 ProblemStatusCode STATIC CCD-164 (.50)-->
+											<value xsi:type="CE" code="%FamilyHistory_ProblemStatusCode%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="%FamilyHistory_ProblemStatusDisplay%"/>
+											<!-- SHALL NOT  contain any additional Observation attributes CCD-517-->
+											<!-- SHALL NOT  contain any additional Observation participants CCD-518-->
+											<!-- SHALL NOT  contain any additional Observation relationships CCD-519-->
+										</observation>
+									</entryRelationship>
+									<!-- _____________________________________________________________
+											END COPY OF PROBLEM STATUS OBSERVATION FROM PROBLEMS SAMPLE -->
+									<!-- SHALL [1..1] CCD-224 entryRelationship/@typeCode='SUBJ' -->
+									<entryRelationship typeCode="SUBJ" inversionInd="true">
+										<!-- SHALL [1..1] CCD-225 observation (template 20.1.38 represented by obs -->
+										<!-- SHALL [1..1] CCD-227 observation/@classCode='OBS' -->
+										<!-- SHALL [1..1] CCD-228 observation/@moodCode='EVN' -->
+										<observation classCode="OBS" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.10.20.1.38"/>
+											<!-- SHALL [1..1] CCD-228 code/@code='397659008' SNOMED CT -->
+											<code code="397659008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Age"/>
+											<!-- SHALL [1..1] CCD-229 statusCode -->
+											<!-- SHALL [1..1] CCD-230 statusCode/@code='completed' -->
+											<statusCode code="completed"/>
+											<!-- SHALL [1..1] CCD-231 value with xsi:type -->
+											<value xsi:type="INT" value="%FamilyHistory_ProblemAge%"/>
+										</observation>
+									</entryRelationship>
+								</observation>
+							</component>
+						</organizer>
+					</entry>
+				</section>
+			</component>
+			<!-- 
+********************************************************
+Functional Status section (DONE TOKENIZING)
+********************************************************
+-->
+			<component>
+				<!-- SHOULD [1..1] CCD-123, section with templateId 20.1.5 -->
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.1.5"/>
+					<!-- SHALL [1..1] CCD-124 code -->
+					<!-- SHALL [1..1] CCD-125 code/@code='47420-5' 'Functional status assessment' LOINC -->
+					<code code="47420-5" displayName="Functional Status" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+					<!-- SHALL [1..1] CCD-126 title -->
+					<!-- SHOULD [1..1] CCD-127, title/text() valued with case-insensitive... -->
+					<title>Functional Status</title>
+					<!-- SHALL [1..1] CCD-123, section with template id must have a narrative block -->
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Functional Condition</th>
+									<th>Effective Dates</th>
+									<th>Condition Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>%FunctionalStatus_Display%</td>
+									<td>%FunctionalStatus_EffectiveTime%</td>
+									<td>%FunctionalStatus_StatusDisplay%</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<entry typeCode="DRIV">
+						<act classCode="ACT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.1.27"/>
+							<!-- Problem act template -->
+							<id root="%FunctionalStatus_Id%"/>
+							<code nullFlavor="NA"/>
+							<entryRelationship typeCode="SUBJ">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.1.28"/>
+									<!-- Problem observation template -->
+									<id root="%FunctionalStatus_ProblemId%"/>
+									<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+									<statusCode code="completed"/>
+									<effectiveTime>
+										<low value="%FunctionalStatus_EffectiveTime%"/>
+									</effectiveTime>
+									<value xsi:type="CD" code="%FunctionalStatus_Code%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="%FunctionalStatus_Display%"/>
+									<entryRelationship typeCode="REFR">
+										<observation classCode="OBS" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.10.20.1.44"/>
+											<!-- Status of functional status observation template -->
+											<code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Status"/>
+											<statusCode code="completed"/>
+											<value xsi:type="CE" code="%FunctionalStatus_StatusCode%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="%FunctionalStatus_StatusDisplay%"/>
+										</observation>
+									</entryRelationship>
+								</observation>
+							</entryRelationship>
+						</act>
+					</entry>
+				</section>
+			</component>
+			<!-- 
+********************************************************
+Immunizations section
+********************************************************
+-->
+			<component>
+				<section>
+					<!--SHOULD [1..1] templateId CONF-376-->
+					<templateId root="2.16.840.1.113883.10.20.1.6"/>
+					<!-- !!!SHOULD [1..*] clinical statements CONF-376 -->
+					<!-- !!!SHOULD [1..*] medication activities and/or supply activities CONF-376 -->
+					<!--SHALL [1..1] code CONF-377, CONF-378-->
+					<code code="11369-6" displayName="History of immunizations" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+					<!--SHALL [1..1] title CONF-379-->
+					<!--SHOULD [1..1] title CONF-380 'be valued with a case-insensitive language-insensitive text string containing "immunization"'-->
+					<title>Immunization</title>
+					<!-- SHALL [1..1] Narritive block CONF-376 -->
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Condition</th>
+									<th>Effective Dates</th>
+									<th>Condition Status</th>
+									<th>Age at Onset</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Asthma</td>
+									<td>1950</td>
+									<td>Active</td>
+									<td>
+										<content ID="problem1age">1950</content>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<!-- SHOULD [0..*] entry CCD-298, ALL ENTRIES ARE SHOULD -->
+					<!-- is the comment "ALL ENTRIES ARE SHOULD" necessary? -->
+					<entry typeCode="DRIV">
+						<!--SHALL [1..1] substanceAdministration CCD-304 -->
+						<!--SHALL [1..1] substanceAdministration/@moodCode="EVN" or @moodCode="INT" CCD-305 -->
+						<!-- create small value set for IG -->
+						<!--SHALL [1..1] per CDA R2 @classCode="SBADM" -->
+						<!-- Are we documenting CDA constraints? -->
+						<substanceAdministration classCode="SBADM" moodCode="EVN">
+							<!--  Remove this No requirement on templateID -->
+							<!-- SHOULD [0..*] substanceAdministration/templateId/@root="2.16.840.1.113883.10.20.1.24" CCD-298 -->
+							<templateId root="2.16.840.1.113883.10.20.1.24"/>
+							<!-- Medication activity template -->
+							<!-- SHALL [1..*] id CCD-306 -->
+							<id root="%Immunization_Id%"/>
+							<!-- SHOULD [0..1] statusCode CCD-307 -->
+							<statusCode code="active"/>
+							<!-- SHOULD [0..*] effectiveTime CCD-308 -->
+							<effectiveTime xsi:type="IVL_TS" value="%Immunization_Date%"/>
+							<!-- SHOULD [0..1] routeCode CCD-309 -->
+							<!-- SHOULD [0..1] routeCode@code  come from HL7 RouteOfAdministration (2.16.840.1.113883.5.112) CCD-310 -->
+							<routeCode code="%Immunization_RouteCode%" codeSystem="%Immunization_RouteCodeSystem%" displayName="%Immunization_RouteDisplay%"/>
+							<!-- SHOULD [0..1] rateQuantity OR doseQuantity CCD-311 -->
+							<!-- SHALL [1..1] doseQuantity is a unitless number that indicated the number of products given per administration, if consumable/manufacturedProduct/ManufacturedMaterial/code contains a precoordinated unit dose CCD-361 -->
+							<!-- SHALL [1..1] doseQuantity is a physical quantity that indicates the amount of product given per administration, if consumable/manufacturedProduct/ManufacturedMaterial/code does not contian a precoordinated unit dose CCD-362 -->
+							<doseQuantity value="2"/>
+							<!-- SHALL [1..1] consumable CCD-354-->
+							<consumable>
+								<!-- SHALL [1..1] manufacturedProduct CCD-356-->
+								<manufacturedProduct>
+									<!-- SHALL [1..1] templateId 2.16.840.1.113883.10.20.1.53 CCD-356-->
+									<templateId root="2.16.840.1.113883.10.20.1.53"/>
+									<!-- Product template -->
+									<!-- MAY [0..*] id CCD-366-->
+									<id/>
+									<!-- SHALL [1..1] manufacturedMaterial CCD-357-->
+									<manufacturedMaterial>
+										<!-- SHALL [1..1] code CCD-358 -->
+										<!-- SHALL [1..1] code/@code SHOULD be selected from the RxNorm (2.16.840.1.113883.6.88) code system for medications, 
+							and from the CDC Vaccine Code (2.16.840.1.113883.6.59) code system for immunizations , 
+							or MAY be selected from ValueSet 2.16.840.1.113883.1.11.20.8 MedicationTypeCode STATIC 20061017 CCD-359-->
+										<!-- MAY [1..1] contain a precoordinated product strength, product form, or product concentration CCD-360 -->
+										<code code="%Immunization_DrugCode%" codeSystem="%Immunization_DrugCodeSystem%" displayName="%Immunization_DrugDisplay%" codeSystemName="%Immunization_DrugCodeSystemName%">
+											<!-- SHALL [1..1] originalText which represents generic name CCD-363-->
+											<originalText>%Immunization_DrugOriginalText%</originalText>
+											<translation code="%Immunization_DrugTranslationCode%" displayName="%Immunization_DrugTranslationName%" codeSystemName="%Immunization_DrugTranslationCodeSystemName%" codeSystem="%Immunization_DrugTranslationDisplay%">
+											</translation>
+										</code>
+									</manufacturedMaterial>
+									<!-- MAY [0..1] manufacturerOrganization which represents manufacturer of the material CCD-365 -->
+									<!-- SHOULD [0..1] manufacturerOrganization if manufacturedProduct/id CCD-367 -->
+									<manufacturerOrganization/>
+								</manufacturedProduct>
+							</consumable>
+							<!-- MAY [0..1] CCD-313 performer-->
+							<performer>
+								<assignedEntity>
+									<id nullFlavor="NI"/>
+									<representedOrganization>
+										<id root="%Header_OrganizationId%"/>
+										<name>%Header_OrganizationName%</name>
+									</representedOrganization>
+								</assignedEntity>
+							</performer>
+							<!-- SHALL [1..*] informant CCD-315 -->
+							<informant>
+								<assignedEntity>
+									<id nullFlavor="NI"/>
+									<!-- not sure what we are doing with content constraints -->
+									<!-- SHALL [0..1] person source represented in informant CCD-520 -->
+									<assignedPerson>
+										<name>
+											<prefix>%Header_DoctorPrefix%</prefix>
+											<given>%Header_DoctorGiven%</given>
+											<family>%Header_DoctorFamily%</family>
+										</name>
+									</assignedPerson>
+									<!-- SHALL [0..1] organization source represented in informant CCD-521 -->
+									<representedOrganization>
+										<id root="%Header_OrganizationId%"/>
+										<name>%Header_OrganizationName%</name>
+									</representedOrganization>
+								</assignedEntity>
+							</informant>
+						</substanceAdministration>
+					</entry>
+				</section>
+			</component>
+			<!-- 
+********************************************************
+Medical Equipment section (DONE TOKENIZING)
+********************************************************
+-->
+			<component>
+				<!-- SHOULD [1..1] CCD-371, section with templateId 20.1.7 -->
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.1.7"/>
+					<!-- SHALL [1..1] CCD-372, code -->
+					<!-- SHALL [1..1] CCD-373, code/@code='46264-8' -->
+					<code code="46264-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Medical Equipment"/>
+					<!-- SHALL [1..1] CCD-374, title -->
+					<!-- SHOULD [1..1] CCD-375, title/text() valued with case-insensitive... -->
+					<title>Medical Equipment</title>
+					<!-- SHALL [1..1] CCD-371, section with template id 20.1.7 must have a narrative block -->
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Supply/Device</th>
+									<th>Date Supplied</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>%MedicalEquipment_Display%</td>
+									<td>%MedicalEquipment_Date%</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<!-- SHOULD [1..*] CCD-381, section with template id 20.1.7 should have entries -->
+					<entry typeCode="DRIV">
+						<supply classCode="SPLY" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.1.34"/>
+							<id root="%MedicalEquipment_Id%"/>
+							<statusCode code="completed"/>
+							<effectiveTime xsi:type="IVL_TS">
+								<center value="%MedicalEquipment_Date%"/>
+							</effectiveTime>
+							<participant typeCode="DEV">
+								<participantRole classCode="MANU">
+									<templateId root="2.16.840.1.113883.10.20.1.52"/>
+									<playingDevice>
+										<code code="%MedicalEquipment_Code%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="%MedicalEquipment_Display%"/>
+									</playingDevice>
+								</participantRole>
+							</participant>
+						</supply>
+					</entry>
+				</section>
+			</component>
+			<!-- 
+********************************************************
+Medications section (DONE TOKENIZING)
+********************************************************
+-->
+			<component>
+				<section>
+					<!-- SHOULD [0..1] templateId/@root="2.16.840.1.113883.10.20.1.8" CCD-298 -->
+					<templateId root="2.16.840.1.113883.10.20.1.8"/>
+					<!-- Medications section template -->
+					<!-- SHALL [1..1] code CCD-300 -->
+					<!-- SHALL [1..1] code/@code=10160-0 CCD-301 -->
+					<code code="10160-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Medications"/>
+					<!-- SHALL [1..1] title CCD-302-->
+					<!-- SHOULD [1..1] title="medication" CCD-303 -->
+					<!-- CCD -303 title="medication"   <title>Medications</title> -->
+					<title>Medication</title>
+					<!--SHALL [1..1] text CCD-298 -->
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Medication</th>
+									<th>Instructions</th>
+									<th>Start Date</th>
+									<th>Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>%Medications_MedDisplay%</td>
+									<td>%Medications_DoseQuantity</td>
+									<td> </td>
+									<td>%Medications_MedStatusDisplay%</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<!-- SHOULD [0..*] entry CCD-298, ALL ENTRIES ARE SHOULD -->
+					<!-- is the comment "ALL ENTRIES ARE SHOULD" necessary? -->
+					<entry typeCode="DRIV">
+						<!--SHALL [1..1] substanceAdministration CCD-304 -->
+						<!--SHALL [1..1] substanceAdministration/@moodCode="EVN" or @moodCode="INT" CCD-305 -->
+						<!-- create small value set for IG -->
+						<!--SHALL [1..1] per CDA R2 @classCode="SBADM" -->
+						<!-- Are we documenting CDA constraints? -->
+						<substanceAdministration classCode="SBADM" moodCode="EVN">
+							<!--  Remove this No requirement on templateID -->
+							<!-- SHOULD [0..*] substanceAdministration/templateId/@root="2.16.840.1.113883.10.20.1.24" CCD-298 -->
+							<templateId root="2.16.840.1.113883.10.20.1.24"/>
+							<!-- Medication activity template -->
+							<!-- SHALL [1..*] id CCD-306 -->
+							<id root="%Medications_Id%"/>
+							<!-- SHOULD [0..1] statusCode CCD-307 -->
+							<statusCode code="active"/>
+							<!-- SHOULD [0..*] effectiveTime CCD-308 -->
+							<effectiveTime xsi:type="IVL_TS">
+								<low value="%Medications_DateLow%"/>
+								<high nullFlavor="%Medications_DateHighNull%"/>
+							</effectiveTime>
+							<effectiveTime xsi:type="PIVL_TS">
+								<period value="%Medications_PeriodValue%" unit="%Medications_PeriodUnit%"/>
+							</effectiveTime>
+							<!-- SHOULD [0..1] routeCode CCD-309 -->
+							<!-- SHOULD [0..1] routeCode@code  come from HL7 RouteOfAdministration (2.16.840.1.113883.5.112) CCD-310 -->
+							<routeCode code="%Medications_RouteCode%" codeSystem="%Medications_RouteCodeSystem%" codeSystemName="%Medications_RouteCodeSystemName%" displayName="%Medications_RouteDisplay%"/>
+							<!-- SHOULD [0..1] rateQuantity OR doseQuantity CCD-311 -->
+							<!-- SHALL [1..1] doseQuantity is a unitless number that indicated the number of products given per administration, if consumable/manufacturedProduct/ManufacturedMaterial/code contains a precoordinated unit dose CCD-361 -->
+							<!-- SHALL [1..1] doseQuantity is a physical quantity that indicates the amount of product given per administration, if consumable/manufacturedProduct/ManufacturedMaterial/code does not contian a precoordinated unit dose CCD-362 -->
+							<doseQuantity value="%Medications_DoseQuantity%"/>
+							<!-- SHALL [1..1] consumable CCD-354-->
+							<consumable>
+								<!-- SHALL [1..1] manufacturedProduct CCD-356-->
+								<manufacturedProduct>
+									<!-- SHALL [1..1] templateId 2.16.840.1.113883.10.20.1.53 CCD-356-->
+									<templateId root="2.16.840.1.113883.10.20.1.53"/>
+									<!-- Product template -->
+									<!-- MAY [0..*] id CCD-366-->
+									<id/>
+									<!-- SHALL [1..1] manufacturedMaterial CCD-357-->
+									<manufacturedMaterial>
+										<!-- SHALL [1..1] code CCD-358 -->
+										<!-- SHALL [1..1] code/@code SHOULD be selected from the RxNorm (2.16.840.1.113883.6.88) code system for medications, 
+							and from the CDC Vaccine Code (2.16.840.1.113883.6.59) code system for immunizations , 
+							or MAY be selected from ValueSet 2.16.840.1.113883.1.11.20.8 MedicationTypeCode STATIC 20061017 CCD-359-->
+										<!-- MAY [1..1] contain a precoordinated product strength, product form, or product concentration CCD-360 -->
+										<code code="%Medications_MedCode%" codeSystem="2.16.840.1.113883.6.88" displayName="%Medications_MedDisplay%">
+											<!-- SHALL [1..1] originalText which represents generic name CCD-363-->
+											<originalText>%Medications_MedOriginalText%</originalText>
+										</code>
+									</manufacturedMaterial>
+									<!-- MAY [0..1] manufacturerOrganization which represents manufacturer of the material CCD-365 -->
+									<!-- SHOULD [0..1] manufacturerOrganization if manufacturedProduct/id CCD-367 -->
+									<manufacturerOrganization/>
+								</manufacturedProduct>
+							</consumable>
+							<!-- SHALL [1..*] informant CCD-315 -->
+							<informant>
+								<assignedEntity>
+									<id nullFlavor="NI"/>
+									<!-- not sure what we are doing with content constraints -->
+									<!-- SHALL [0..1] person source represented in informant CCD-520 -->
+									<assignedPerson>
+										<name>
+											<prefix>%Header_DoctorPrefix%</prefix>
+											<given>%Header_DoctorGiven%</given>
+											<family>%Header_DoctorFamily%</family>
+										</name>
+									</assignedPerson>
+									<!-- SHALL [0..1] organization source represented in informant CCD-521 -->
+									<representedOrganization>
+										<id root="%Header_OrganizationId%"/>
+										<name>%Header_OrganizationName%</name>
+									</representedOrganization>
+								</assignedEntity>
+							</informant>
+							<!-- SUPPLY ACTIVITY -->
+							<!--** MAY [0..1] entryRelationship containing supply-->
+							<!--** SHALL [1..1] @typeCode="REFR"-->
+							<entryRelationship typeCode="REFR">
+								<!-- SHALL [1..1] supply CCD-316 -->
+								<!-- SHALL [1..1] per CDA R2 @classCode="SPLY"-->
+								<!-- Are we documenting CDA constraints? -->
+								<!-- SHALL [1..1] supply @moodCode="EVN" or @moodCode="INT" CCD-317 -->
+								<!-- SHALL [1..1] supply CCD-316 -->
+								<supply classCode="SPLY" moodCode="INT">
+									<!-- Romove this   No requirement on templateID -->
+									<!-- SHOULD [0..*] supply activity templateId/@root="2.16.840.1.113883.10.20.1.34" CCD-298 -->
+									<!-- SHALL [1..1] supply templateId/@root="2.16.840.1.113883.10.20.1.34" CCD-316 -->
+									<templateId root="2.16.840.1.113883.10.20.1.34" assigningAuthorityName="CCD"/>
+									<!-- SHALL [1..*] id CCD-318 -->
+									<id/>
+									<!-- SHOULD [0..1] statusCode CCD-319 -->
+									<statusCode code="completed"/>
+									<!-- supply effectiveTime is unbounded per CDA R2 (change to [0..*]?)    SHOULD [0..1] effectiveTime CCD-320 -->
+									<effectiveTime xsi:type="IVL_TS">
+										<low value="%Medications_DateLow%"/>
+										<high nullFlavor="%Medications_DateHighNull%"/>
+									</effectiveTime>
+									<!-- MAY [0..1]  product is 2.16.840.1.113883.10.20.1.53 CCD-355 -->
+									<product>
+										<!-- copied from product template -->
+										<!-- SHALL [1..1] manufacturedProduct CCD-356-->
+										<manufacturedProduct>
+											<!-- SHALL [1..1] templateId 2.16.840.1.113883.10.20.1.53 CCD-356-->
+											<templateId root="2.16.840.1.113883.10.20.1.53"/>
+											<!-- Product template -->
+											<!-- MAY [0..*] id CCD-366-->
+											<id/>
+											<!-- SHALL [1..1] manufacturedMaterial CCD-357-->
+											<manufacturedMaterial>
+												<!-- SHALL [1..1] code CCD-358-->
+												<!-- SHALL [1..1] code/@code SHOULD be selected from the RxNorm (2.16.840.1.113883.6.88) code system for medications, 
+									and from the CDC Vaccine Code (2.16.840.1.113883.6.59) code system for immunizations , 
+									or MAY be selected from ValueSet 2.16.840.1.113883.1.11.20.8 MedicationTypeCode STATIC 20061017 CCD-359-->
+												<!-- MAY [1..1] contain a precoordinated product strength, product form, or product concentration CCD-360 -->
+												<code code="%Medications_MedCode%" codeSystem="2.16.840.1.113883.6.88" displayName="%Medications_MedDisplay%">
+													<!-- SHALL [1..1] originalText which represents generic name CCD-363-->
+													<originalText>%Medications_MedOriginalText%</originalText>
+												</code>
+											</manufacturedMaterial>
+											<!-- MAY [0..1] manufacturerOrganization which represents manufacturer of the material  CCD-365-->
+											<!-- SHOULD [0..1] manufacturerOrganization if manufacturedProduct/id CCD-367 -->
+											<manufacturerOrganization/>
+										</manufacturedProduct>
+									</product>
+									<!-- SHALL [1..*] informant CCD-326 -->
+									<informant>
+										<assignedEntity>
+											<id nullFlavor="NI"/>
+											<!-- not sure what we are doing with content constraints -->
+											<!-- SHALL [0..1] person source represented in informant CCD-520 -->
+											<assignedPerson>
+												<name>
+													<prefix>%Header_DoctorPrefix%</prefix>
+													<given>%Header_DoctorGiven%</given>
+													<family>%Header_DoctorFamily%</family>
+												</name>
+											</assignedPerson>
+											<!-- SHALL [0..1] organization source represented in informant CCD-521 -->
+											<representedOrganization>
+												<id root="%Header_OrganizationId%"/>
+												<name>%Header_OrganizationName%</name>
+											</representedOrganization>
+										</assignedEntity>
+									</informant>
+									<participant typeCode="DEV">
+										<participantRole classCode="MANU">
+											<id root="03ca01b0-7be1-11db-9fe1-0800200c9a66"/>
+											<scopingEntity nullFlavor="NA"/>
+										</participantRole>
+									</participant>
+									<!-- MEDICATION SUPPLY STATUS OBSERVATION -->
+									<!-- MAY [0..1] entryRelationship CCD-351-->
+									<!-- SHALL [1..1] if status observation, entryRelationship/@typeCode="REFR" CCD-509 -->
+									<entryRelationship typeCode="REFR">
+										<!-- SHALL [1..1] status observation represented by Observation CCD-508 -->
+										<!-- SHALL [1..1] observation/@classCode="OBS" CCD-510 -->
+										<!-- SHALL [1..1] observation/@moodCode="EVN" CCD-511 -->
+										<observation classCode="OBS" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.10.20.1.47"/>
+											<!-- SHALL [1..1] medication observation is a status observation CCD-352 -->
+											<templateId root="2.16.840.1.113883.10.20.1.57"/>
+											<!-- SHALL [1..1] code CCD-512 -->
+											<!-- SHALL [1..1] code/@code="33999-4" CCD-513 -->
+											<code code="33999-4" displayName="Status" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+											<!-- SHALL [1..1] statusCode CCD-514 -->
+											<!-- SHALL [1..1] statusCode/@code="completed" CCD-515 -->
+											<statusCode code="completed"/>
+											<!-- SHALL [1..1] value/@xsi:type="CE" is from ValueSet medicationStatusCode 2.16.840.1.113883.1.11.20.7 CCD-516 -->
+											<!-- SHALL [1..1] value/@code is from ValueSet medicationStatusCode 2.16.840.1.113883.1.11.20.7 CCD-353 -->
+											<value xsi:type="CE" code="%Medications_MedStatusCode%" displayName="%Medications_MedStatusDisplay%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+										</observation>
+									</entryRelationship>
+									<!-- PATIENT INSTRUCTIONS -->
+									<!-- ** MAY [0..1] entryRelationship containing patient instructions  CCD-330 -->
+									<!-- SHALL [1..1] @typeCode="SUBJ" CCD-333 -->
+									<entryRelationship typeCode="SUBJ">
+										<!-- SHALL [1..1] @classCode="ACT" CCD-331 -->
+										<!-- SHALL [1..1] @moodCode="INT" CCD-332 -->
+										<act classCode="ACT" moodCode="INT">
+											<!-- added templateId -->
+											<templateId root="2.16.840.1.113883.10.20.1.49"/>
+											<!-- **SHALL [1..1] code per base CDA -->
+											<!-- Are we documenting CDA constraints? -->
+											<code nullFlavor="NI"/>
+										</act>
+									</entryRelationship>
+									<!-- Fulfillment Instructions is contained within a supply activity -->
+									<!--** MAY [0..1] entryRelationship containing fulfillment instructions  CCD-334 -->
+									<!-- SHALL [1..1] @typeCode="SUBJ" CCD-337 -->
+									<entryRelationship typeCode="SUBJ">
+										<!-- SHALL [1..1] @classCode="ACT" CCD-335 -->
+										<!-- SHALL [1..1] @moodCode="INT" CCD-336 -->
+										<act classCode="ACT" moodCode="INT">
+											<!-- added templateId -->
+											<templateId root="2.16.840.1.113883.10.20.1.43"/>
+											<!-- **SHALL [1..1] code per base CDA -->
+											<!-- Are we documenting CDA constraints? -->
+											<code nullFlavor="NI"/>
+										</act>
+									</entryRelationship>
+								</supply>
+							</entryRelationship>
+							<!-- MEDICATION SERIES NUMBER OBSERVATION -->
+							<!--MAY [0..1] entryRelationship containing medication series number CCD-338 -->
+							<!-- SHALL [1..1] @typeCode="SUBJ" CCD-339 -->
+							<entryRelationship typeCode="SUBJ">
+								<!-- SHALL [1..1] Observation CCD-340 -->
+								<!-- SHALL [1..1] Observation @classCode="OBS" CCD-341 -->
+								<!-- SHALL [1..1] Observation @moodCode="EVN" CCD-342 -->
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- SHALL [1..1] templateId/@root="2.16.840.1.113883.10.20.1.46" CCD-340 -->
+									<templateId root="2.16.840.1.113883.10.20.1.46"/>
+									<!-- SHALL [1..1] code CCD-344 -->
+									<!-- SHALL [1..1] code@code=30973-2 Dose Number CCD-345 -->
+									<!-- SHALL [1..1] code@codeSystem=2.16.840.1.113883.6.1 LOINC CCD-345-->
+									<code code="30973-2" displayName="Dose Number" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+									<!-- SHALL [1..1] statusCode CCD-343 -->
+									<statusCode code="complete"/>
+									<!-- SHALL [1..1] value CCD-346 -->
+									<!-- SHALL [1..1] value @xsi:type="INT" CCD-347 -->
+									<value xsi:type="INT" value="%Medications_DoseQuantity%"/>
+								</observation>
+							</entryRelationship>
+							<!-- MEDICATION ACTIVITY STATUS OBSERVATION -->
+							<!-- MAY [0..1] entryRelationship CCD-350-->
+							<!-- SHALL [1..1] if status observation, entryRelationship/@typeCode="REFR" CCD-509 -->
+							<entryRelationship typeCode="REFR">
+								<!-- SHALL [1..1] status observation represented by Observation CCD-508 -->
+								<!-- SHALL [1..1] observation/@classCode="OBS" CCD-510 -->
+								<!-- SHALL [1..1] observation/@moodCode="EVN" CCD-511 -->
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.1.47"/>
+									<!-- SHALL [1..1] medication observation is a status observation CCD-352 -->
+									<templateId root="2.16.840.1.113883.10.20.1.57"/>
+									<!-- SHALL [1..1] code CCD-512 -->
+									<!-- SHALL [1..1] code/@code="33999-4" CCD-513 -->
+									<code code="33999-4" displayName="Status" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+									<!-- SHALL [1..1] statusCode CCD-514 -->
+									<!-- SHALL [1..1] statusCode/@code="completed" CCD-515 -->
+									<statusCode code="completed"/>
+									<!-- SHALL [1..1] value/@xsi:type="CE" is from ValueSet medicationStatusCode 2.16.840.1.113883.1.11.20.7 CCD-516 -->
+									<!-- SHALL [1..1] value/@code is from ValueSet medicationStatusCode 2.16.840.1.113883.1.11.20.7 CCD-353 -->
+									<value xsi:type="CE" code="55561003" displayName="Active" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+								</observation>
+							</entryRelationship>
+							<!-- MAY [0..1] precondition CCD-327 -->
+							<!-- Where is this requirement?    **SHALL [1..1] @typeCode="PRCN" -->
+							<precondition typeCode="PRCN">
+								<!-- SHALL [1..1] per CDA R2 -->
+								<!-- Are we documenting CDA constraints? -->
+								<criterion>
+									<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+									<value xsi:type="CE" code="%Medications_PreConditionCode%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="%Medications_PreConditionDisplay%"/>
+								</criterion>
+							</precondition>
+							<!-- END of INDICATIONS - rationale for activity -->
+						</substanceAdministration>
+					</entry>
+				</section>
+			</component>
+			<!-- 
+********************************************************
+Payers section (DONE TOKENIZING)
+********************************************************
+-->
+			<component>
+				<!-- SHOULD [1..1] CCD-30, section with templateId 20.1.9 -->
+
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.1.9"/>
+					<!-- SHALL [1..1] CCD-31, code -->
+					<!-- SHALL [1..1] CCD-32, code/@code='48768-6' -->
+					<code code="48768-6" displayName="Payers" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+					<!-- SHALL [1..1] CCD-33, title -->
+					<!-- SHOULD [1..1] CCD-34, title/text() valued with case-insensitive... -->
+					<title>Payers</title>
+					<!-- SHALL [1..1] CCD-30, section with template id must have a narrative block -->
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Payer name</th>
+									<th>Policy type / Coverage type</th>
+									<th>Covered party ID</th>
+									<th>Authorization(s)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>%Payers_CompanyName%</td>
+									<td>%Payers_CoverageDisplay%</td>
+									<td>%Payers_CompanyId%</td>
+									<td>%Payers_ProcedureDisplay%</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<!-- SHOULD [1..*] CCD-30, section with template id should have entries -->
+					<entry typeCode="DRIV">
+						<!-- Coverage Act -->
+						<!-- SHALL [1..1] CCD-35 Coverage activity shall be represented with Act and templateId 20.1.20 -->
+						<!-- SHALL [1..1] CCD-36 act/@classCode='ACT' -->
+						<!-- SHALL [1..1] CCD-37 act/@moodCode='DEF' -->
+						<act classCode="ACT" moodCode="DEF">
+							<templateId root="2.16.840.1.113883.10.20.1.20"/>
+							<!-- SHALL [1..*] CCD-38 id -->
+							<id root="1fe2cdd0-7aad-11db-9fe1-0800200c9a66"/>
+							<!-- SHALL [1..1] CCD-41 code -->
+							<!-- SHALL [1..1] CCD-42 code/@code='48768-6' 'Payment sources' LOINC -->
+							<code code="48768-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Payment sources"/>
+							<!-- SHALL [1..1] CCD-39 -->
+							<!-- SHALL [1..1] CCD-40 statusCode/@code='completed' -->
+							<statusCode code="completed"/>
+							<!-- SHALL [1..*] CCD-43 entryRelationship -->
+							<!-- SHALL [1..1] CCD-45 entryRelationship/@typeCode='COMP' -->
+							<entryRelationship typeCode="COMP">
+								<!-- SHALL [1..1] CCD-48 act -->
+								<!-- SHALL [1..1] CCD-49 act/@classCode='ACT' -->
+								<!-- SHALL [1..1] CCD-50 act/@moodCode='EVN' -->
+								<act classCode="ACT" moodCode="EVN">
+									<!-- SHALL [1..1] CCD-46 templateId 20.1.26 -->
+									<templateId root="2.16.840.1.113883.10.20.1.26"/>
+									<!-- SHALL [1..*] CCD-51 id -->
+									<id root="3e676a50-7aac-11db-9fe1-0800200c9a66"/>
+									<!-- SHOULD [0..1] CCD-54 code -->
+									<!-- SHOULD [1..1] code/@code ValueSet 2.16.840.1.113883.1.11.19832 ActCoverageType DYNAMIC -->
+									<code code="%Payers_CoverageCode%" codeSystem="2.16.840.1.113883.5.4" displayName="%Payers_CoverageDisplay%"/>
+									<!-- SHALL [1..1] CCD-52 statusCode -->
+									<!-- SHALL [1..1] CCD-53 statusCode/@code='completed' -->
+									<statusCode code="completed"/>
+									<!-- SHALL [1..1] CCD-56 performer where @typeCode='PRF' -->
+									<performer typeCode="PRF">
+										<assignedEntity>
+											<!-- SHALL [1..*] CCD-57 id -->
+											<id root="%Payers_CompanyId%"/>
+											<representedOrganization>
+												<name>%Payers_CompanyName%</name>
+											</representedOrganization>
+										</assignedEntity>
+									</performer>
+									<!-- SHALL [1..1] CCD-58 participant where @typeCode='COV' -->
+									<participant typeCode="COV">
+										<!-- MAY [1..1] CCD-62 time -->
+										<time nullFlavor="NA"/>
+										<participantRole>
+											<!-- SHOULD [1..*] CCD-59 id -->
+											<id root="14d4a520-7aae-11db-9fe1-0800200c9a66"/>
+											<!-- SHOULD [1..1] CCD-60 code -->
+											<!-- MAY [1..1] CCD-61 code/@code ValueSet 2.16.840.1.113883.1.11.19809 PolicyOrProgramCoverageRoleType DYNAMIC -->
+											<code code="%Payers_CoverageRoleCode%" codeSystem="2.16.840.1.113883.5.111" displayName="%Payers_CoverageRoleCode%"/>
+										</participantRole>
+									</participant>
+									<!-- SHALL [1..1] CCD-66 entryRelationship/@typeCode='REFR' -->
+									<entryRelationship typeCode="REFR">
+										<!-- SHALL [1..1] CCD-67 act with templateId 20.1.19 -->
+										<!-- SHALL [1..1] CCD-69 template id 20.1.19 represented with act -->
+										<!-- SHALL [1..1] CCD-60 act/@classCode='ACT' -->
+										<!-- SHALL [1..1] CCD-61 act/@moodCode='EVN' -->
+										<act classCode="ACT" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.10.20.1.19"/>
+											<!-- SHALL [1..*] CCD-68 id -->
+											<id root="f4dce790-8328-11db-9fe1-0800200c9a66"/>
+											<code nullFlavor="NA"/>
+											<!-- SHALL [1..*] CCD-73 entryRelationship -->
+											<!-- SHALL [1..1] CCD-74 entryRelationship/@typeCode='SUBJ' -->
+											<entryRelationship typeCode="SUBJ">
+												<!-- SHALL [1..1] CCD-75 entryRelationship with @typeCode SUBJ must have statement with @moodCode='PRMS' -->
+												<procedure classCode="PROC" moodCode="PRMS">
+													<code code="%Payers_ProcedureCode%" codeSystem="%Payers_ProcedureCodeSystem%" displayName="%Payers_ProcedureDisplay%"/>
+												</procedure>
+											</entryRelationship>
+										</act>
+									</entryRelationship>
+								</act>
+							</entryRelationship>
+						</act>
+					</entry>
+				</section>
+			</component>
+			<!-- 
+********************************************************
+Plan of Care section (DONE TOKENIZING)
+********************************************************
+-->
+			<component>
+				<!-- SHOULD [1..1] CCD-480 section with templateId 20.1.10 -->
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.1.10"/>
+					<!-- SHALL [1..1] CCD-481 code -->
+					<!-- SHALL [1..1] CCD-482 code/@code='18776-5' 'Treatment plan' LOINC -->
+					<code code="18776-5" codeSystem="2.16.840.1.113883.6.1" displayName="Treatment plan" codeSystemName="LOINC"/>
+					<!-- SHALL [1..1] CCD-483 title -->
+					<!-- SHOULD [1..1] CCD-484, title/text() valued with case-insensitive... -->
+					<title>Plans</title>
+					<!-- SHALL [1..1] CCD-480 text -->
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Planned Activity</th>
+									<th>Planned Date</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>%PlanOfCare_Code1%</td>
+									<td>%PlanOfCare_EffectiveTime1%</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<!-- SHOULD [1..*] plan of care activities (entries with template 20.1.25) -->
+					<entry typeCode="DRIV">
+						<!-- SHALL [1..1] CCD-485 act | encounter | observation | Procedure | substanceAdministration | supply -->
+						<!-- SHALL [1..1] CCD-487 XXX/@moodCode -->
+						<!-- SHALL [1..1] CCD-488 procedure/@moodCode='INT' or 'ARQ' or 'PRMS' or 'PRP' or 'RQO' -->
+						<!-- SHALL [1..1] CCD-489 substanceAdministration/@moodCode='INT' or 'PRMS' or 'PRP' or 'RQO' -->
+						<!-- SHALL [1..1] CCD-490 substanceAdministration/@moodCode='INT' or 'PRMS' or 'PRP' or 'RQO' or 'GOL' -->
+						<observation classCode="OBS" moodCode="RQO">
+							<!-- SHALL [1..1] CCD-485 template 20.1.25 -->
+							<templateId root="2.16.840.1.113883.10.20.1.25"/>
+							<!-- SHALL [1..*] CCD-486 id -->
+							<id root="%PlanOfCare_Id1%"/>
+							<code code="%PlanOfCare_Code1%" codeSystem="2.16.840.1.113883.6.96" displayName="%PlanOfCare_Display1%" codeSystemName="SNOMED CT"/>
+							<effectiveTime value="%PlanOfCare_EffectiveTime1%"/>
+						</observation>
+					</entry>
+				</section>
+			</component>
+			<!-- 
+********************************************************
+Problems section (DONE TOKENZING)
+********************************************************
+-->
+			<component>
+				<!-- SHOULD [1..1] CCD-140, section with template id 20.1.11 -->
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.1.11" assigningAuthorityName="HL7 CCD"/>
+					<!-- SHALL [1..1] @ code=11450-4 CCD -141/142-->
+					<code code="11450-4" displayName="Problems" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+					<!-- SHALL [1..1] title CCD -143-->
+					<!-- CCD - 144 Not testable  -->
+					<title>Problems</title>
+					<!--SHALL [1..1] text CCD -140 -->
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Condition</th>
+									<th>Effective Dates</th>
+									<th>Problem</th>
+									<th>Condition Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<content ID="%Problems_TypeReference%">%Problems_TypeDisplay%</content>
+									</td>
+									<td>%Problems_EffectiveTime%</td>
+									<td>%Problems_ProblemDisplay%</td>
+									<td>%Problems_StatusDisplay%</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<!-- SHOULD [0..*] CCD-140, ALL ENTRIES ARE SHOULD -->
+					<entry typeCode="DRIV">
+						<!-- SHALL [1..1]  be represented by an ACT CCD-145 -->
+						<!-- SHALL [1..1] @ classCode="ACT" CCD-146-->
+						<!-- SHALL [1..1] @ moodCode="EVN" CCD -147-->
+						<act classCode="ACT" moodCode="EVN">
+							<!-- SHOULD [0..*] templateId problem act CCD-140 -->
+							<templateId root="2.16.840.1.113883.10.20.1.27" assigningAuthorityName="HL7"/>
+							<!-- SHALL [1..1] templateId HITSP Condition -->
+							<templateId root="2.16.840.1.113883.3.88.11.83.7" assigningAuthorityName="HITSP"/>
+							<!-- SHALL [1..1] templateId IHE Problem Concern Entry -->
+							<templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.2" assigningAuthorityName="IHE"/>
+							<!-- SHALL [1..1] templateId IHE Concern Entry -->
+							<templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.1" assigningAuthorityName="IHE"/>
+							<!-- Problem act template -->
+							<!-- SHALL [1..*] id CCD-148 -->
+							<id root="%Problems_Id%"/>
+							<!-- SHALL [1..1]  actCode@null flavor = "NA" CCD-149-->
+							<code nullFlavor="NA"/>
+							<!-- <**> IHE PCC Requires status code with values: active, suspended, aborted or completed -->
+							<statusCode code="active"/>
+							<!-- MAY [0..1]  act/effectiveTime CCD-150-->
+							<effectiveTime value="%Problems_EffectiveTime%"/>
+							<!-- MAY [0..1] problem act template MAY contain Patient awareness template CCD- 179-->
+							<!-- MAY [0..1] problem observation template MAY contain Patient awareness template CCD- 179-->
+							<!-- SHALL [1..1] participant  CCD- 178-->
+							<!-- SHALL [1..1] typeCode "SBJ" 2.16.840.1.113883.5.90  "STATIC" CCD-181-->
+							<participant typeCode="SBJ">
+								<!-- Patient awareness template ID -->
+								<templateId root="2.16.840.1.113883.10.20.1.48"/>
+								<!-- SHALL [1..1] awarenessCode from valueSet TargetAwareness STATIC? ** CCD- 182
+
+									( ** get new valueSetID or is it the valueSetID the same as the codesystem here? - these are the 6 total codes in the HL7 codesystem) 
+
+								ValueSet/codeSystem members: D (denying), F (full awareness), I (incapable), M (marginal), P (partical), U (uninformed)-->
+								<awarenessCode code="%Problems_AwarenessCode%" displayName="%Problems_AwarenessDisplay%" codeSystem="2.16.840.1.113883.5.137" codeSystemName="TargetAwarness"/>
+								<!-- SHALL [1..1] participant Role CCD-183-->
+								<participantRole>
+									<!-- SHALL [1..1] id CCD -183-->
+									<!-- Primitive/narrative: participant/participantRole/id SHALL = ClinicalDocument/recordTarget/patientRole/id CCD-183-->
+									<id extension="%Header_PatientId%" root="%Header_PatientIdRoot%"/>
+									<!-- ** This id is the same as the
+
+										ClinicalDocument / recordTarget / patientRole / id, yet the Lanatana and  NIST validator throws the 
+
+										following error: The value of the participant/participantRole/id) SHALL also be present in ClinicalDocument / recordTarget / patientRole / id **-->
+									<addr>
+										<!-- SHALL [1..3] streetAddressLine -->
+										<streetAddressLine>%Header_AddressStreet%</streetAddressLine>
+										<!-- SHALL [1..1] ...-->
+										<city>%Header_AddressCity%</city>
+										<!-- SHALL [1..1] HITSP/C80 Section 2.2.1.1.1 State-->
+										<state>%Header_AddressState%</state>
+										<!-- SHALL [1..1] HITSP/C80 Section 2.2.1.1.2 Postal Code-->
+										<postalCode>%Header_AddressPostal%</postalCode>
+										<!-- SHOULD [0..1] country HITSP/C80 Section 2.2.1.1.3 Country -->
+										<country>USA</country>
+									</addr>
+									<!-- SHOULD [ 1..*] -->
+									<telecom value="%Header_Telephone%"/>
+								</participantRole>
+							</participant>
+							<!-- SHALL [1..*]  act/entryRelationship CCD-151-->
+							<!-- MAY [0..1]  @typeCode="SUBJ" CCD-152-->
+							<!-- SHOULD [0..1] CCD-153  The target of a problem act with 
+
+								Act / entryRelationship / @typeCode=”SUBJ” SHOULD be a problem observation -->
+							<!-- in tdb: problem act template SHALL contain and [1..*]entryRelationship, 
+
+							MAY contain typeCode [0..1]SUBJ which SHOULD [0..1]problem observation template ID ..28 
+
+							(or whatever the new tid will be)-->
+							<!-- <**> IHE Requires inversionInd=False  on template 20.1.4.5-->
+							<entryRelationship typeCode="SUBJ" inversionInd="false">
+								<!-- SHALL  [1..1] observation (Problem template) CCD-154-->
+								<!-- SHALL  [1..1] @moodCode= "EVN" CCD-155-->
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- SHOULD [0..*] CCD-140 A problem act contain problem templateId-->
+									<templateId root="2.16.840.1.113883.10.20.1.28"/>
+									<!--<**>  IHE PCC Problem Entry-->
+									<templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5" assigningAuthorityName="IHE PCC"/>
+									<!-- Problem observation template -->
+									<id root="d11275e7-67ae-11db-bd13-0800200c9a66"/>
+									<!-- SHALL [1..1] code  MAY be selected from ValueSet 2.16.840.1.113883.1.11.20.14 ProblemTypeCode CCD-159-->
+									<!-- SHALL [1..1] code and selected from C83 2.2.3.1.2 Problem Type (HITSP 7.02) -->
+									<code code="%Problems_TypeCode%" codeSystem="2.16.840.1.113883.6.96" displayName="%Problems_TypeDisplay%" codeSystemName="SNOMED CT"/>
+									<!-- <**> SHALL [1..1] text HITSP HITSP/C83 Table 2-11, Data Element 7.03 and Section 2.2.2.7.4 -->
+									<text>
+										<!-- To be discussed on 2/22-SHALL contain @value pointing to narrative text -->
+										<reference value="#%Problems_TypeReference%"/>
+									</text>
+									<!-- SHALL [1..1]  statusCode = "completed"  CCD-156-->
+									<!-- SHALL [1..1]  ActStatus = "STATIC" 2.16.840.1.113883.5.14 CCD-157 -->
+									<statusCode code="completed"/>
+									<!-- SHOULD [0..1] effectiveTime  CCD-158-->
+									<effectiveTime>
+										<low value="1950"/>
+									</effectiveTime>
+									<!-- SHALL [1..1] observationCode (CD)(Base CDA) -->
+									<!-- MAY  [0..1] observationCode from valueSet
+
+										2.16.840.1.113883.1.11.20.14 ProblemTypeCode CCD-159 -->
+									<value xsi:type="CD" code="%Problems_ProblemCode%" codeSystem="%Problems_ProblemCodeSystem%" codeSystemName="%Problems_ProblemCodeSystemName%" displayName="%Problems_ProblemDisplay%"/>
+									<!-- MAY [0..1] entryRelationship of @TypeCode SUBJ containing 
+
+									(templateId 2.16.840.1.113883.10.20.1.38 age observation template CCD-160 -->
+									<!-- SHALL [1..*]  Source CCD-161 ** What to do with this "source" REQ must be put discussed.-->
+									<!-- MAY [0..1] problem status observation (templateId 2.16.840.1.113883.10.20.1.50) CCD-162-->
+									<!-- SHALL [1..1] @type code "REFR" STATIC CCD-509 -->
+									<entryRelationship typeCode="REFR">
+										<!-- SHALL conform to status observation (templateId 2.16.840.1.113883.10.20.1.57) CCD-163 -->
+										<!-- SHALL [1..1) Observation (a status observation SHALL be an observation CCD-508] -->
+										<!-- SHALL [1..1] @ classCode "OBS" CCD-510-->
+										<!-- SHALL [1..1] @moodCode "EVN" CCD-511 -->
+										<observation classCode="OBS" moodCode="EVN">
+											<!-- status observation template -->
+											<templateId root="2.16.840.1.113883.10.20.1.57"/>
+											<!-- Problem status observation template -->
+											<templateId root="2.16.840.1.113883.10.20.1.50"/>
+											<!-- SHALL [1..1] observation/code ="33999-4" STATIC CCD-513 -->
+											<code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Status"/>
+											<!-- SHALL [1..1] statusCode CCD- 514-->
+											<!-- SHALL [1..1] @code= completed CCD-515 -->
+											<statusCode code="completed"/>
+											<!-- SHALL [1..1] observationValue ="CE" CCD-516 (.57)-->
+											<!-- SHALL [1..1] observationValue ="CE" SHALL be from ValueSet 2.16.840.1.113883.1.11.20.13 ProblemStatusCode STATIC CCD-164 (.50)-->
+											<value xsi:type="CE" code="%Problems_StatusCode%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="%Problems_StatusDisplay%">
+												<originalText>
+													<reference value="#%Problems_StatusReference%"/>
+												</originalText>
+											</value>
+											<!-- SHALL NOT  contain any additional Observation attributes CCD-517-->
+											<!-- SHALL NOT  contain any additional Observation participants CCD-518-->
+											<!-- SHALL NOT  contain any additional Observation relationships CCD-519-->
+										</observation>
+									</entryRelationship>
+									<!-- MAY [0..1] problem healthstatus observation (templateId 2.16.840.1.113883.10.20.1.51) CCD-165-->
+									<!-- SHALL [1..1] @type code "REFR" STATIC CCD-509 -->
+									<entryRelationship typeCode="REFR">
+										<!-- SHALL conform to status observation (templateId 2.16.840.1.113883.10.20.1.57) CCD-166 -->
+										<!-- SHALL [1..1) Observation (a status observation SHALL be an observation CCD-508] -->
+										<!-- SHALL [1..1] @ classCode "OBS" CCD-510-->
+										<!-- SHALL [1..1] @moodCode "EVN" CCD-511 -->
+										<observation classCode="OBS" moodCode="EVN">
+											<!-- status observation template -->
+											<templateId root="2.16.840.1.113883.10.20.1.57"/>
+											<!-- Problem health status observation template -->
+											<templateId root="2.16.840.1.113883.10.20.1.51"/>
+											<!-- SHALL [1..1] observation/code ="11323-3" "Health Status" LOINC STATIC CCD- 166 -->
+											<code code="11323-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Health Status"/>
+											<!-- SHALL [1..1] statusCode CCD- 514-->
+											<!-- SHALL [1..1] @code= completed CCD-515 -->
+											<statusCode code="completed"/>
+											<!-- SHALL [1..1] observationValue ="CE" CCD-516-->
+											<!-- SHALL [1..1] observationValue ="CE" SHALL be from ValueSet 2.16.840.1.113883.1.11.20.12 ProblemHelathStatusCode STATIC CCD-167 -->
+											<value xsi:type="CE" code="%Problems_HealthStatusCode%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="%Problems_HealthStatusDisplay%"/>
+											<!-- SHALL NOT [0..0] contain any additional Observation attributes CCD-517-->
+											<!-- SHALL NOT [0..0] contain any additional Observation participants CCD-518-->
+											<!-- SHALL NOT [0..0] contain any additional Observation relationships CCD-519-->
+										</observation>
+									</entryRelationship>
+								</observation>
+							</entryRelationship>
+							<entryRelationship typeCode="SUBJ">
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- episode observation template -->
+									<templateId root="2.16.840.1.113883.10.20.1.41"/>
+									<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+									<statusCode code="completed"/>
+									<value xsi:type="CD" code="404684003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Clinical Finding">
+										<qualifier>
+											<name code="246456000" displayName="Episodicity"/>
+											<value code="288527008" displayName="New episode"/>
+										</qualifier>
+									</value>
+								</observation>
+							</entryRelationship>
+						</act>
+					</entry>
+				</section>
+			</component>
+			<!-- 
+********************************************************
+Procedures section (DONE TOKENIZING)
+********************************************************
+-->
+			<component>
+				<section>
+					<!-- Procedure section template Not required -->
+					<!-- SHOULD [1..1] templateId CCD-422 -->
+					<templateId root="2.16.840.1.113883.10.20.1.12"/>
+					<!-- Procedures section template -->
+					<!-- SHALL [1..1] /@code=47519-4 CCD -423/424-->
+					<code code="47519-4" displayName="procedures" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+					<!-- SHALL [1..1] title CCD-425-->
+					<!-- SHOULD [1..1] title CCD-426, Case-insenstive language -->
+					<title>Procedures</title>
+					<!-- SHALL [1..1] text CCD-422 -->
+					<!-- SHOULD [0..*] CCD-422, Narrative Block Required -->
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Procedure</th>
+									<th>Date</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<content ID="%Procedures_Reference%">%Procedures_Display%</content>
+									</td>
+									<td>%Procedures_EffectiveTime%</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<!-- SHOULD [0..*] CCD-422, ALL ENTRIES ARE SHOULD -->
+					<entry typeCode="DRIV">
+						<!-- SHALL [1..*]  CCD-427, ALL ACTIVITIES ARE SHALL -->
+						<!-- SHALL [1..1] /@moodCode="EVN" CCD-428 -->
+						<procedure classCode="PROC" moodCode="EVN">
+							<!-- SHALL [1..1]  CCD-427-->
+							<templateId root="2.16.840.1.113883.10.20.1.29"/>
+							<!-- Procedure activity template -->
+							<!-- SHALL [1..*]  CCD-429-->
+							<id root="%Procedures_Id%"/>
+							<!-- SHALL [1..1]  CCD-433, code-->
+							<!-- SHOULD [1..1] CCD-434, code/@code from LOINC or SNOMED, MAY be selected from CPT-4 or ICD9 Procedures or ICD10 Procedure -->
+							<code code="%Procedures_Code%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="%Procedures_Display%">
+								<originalText>
+									<reference value="%Procedures_Reference%"/>
+								</originalText>
+							</code>
+							<!-- SHALL [1..1]  CCD-430-->
+							<!-- SHALL [1..1]  /@code="completed" CCD-431-->
+							<statusCode code="completed"/>
+							<!-- SHOULD [0..1] CCD-432, effectiveTime-->
+							<effectiveTime value="%Procedures_EffectiveTime%"/>
+							<!-- MAY [1..*] CCD-435, methodCode -->
+							<methodCode code="%Procedures_MethodCode%" codeSystem="2.16.840.1.113883.6.96" displayName="%Procedures_MethodDisplay%"/>
+							<!-- MAY [1..*] CCD-436, targetSiteCode -->
+							<targetSiteCode code="%Procedures_TargetCode%" codeSystem="2.16.840.1.113883.6.96" displayName="%Procedures_TargetDisplay%"/>
+							<!-- MAY [1..*] CCD-443, specimens obtained from procedure -->
+							<specimen>
+								<specimenRole>
+									<!-- SHOULD CCD-444, id matches result -->
+									<!-- NEED id to match results specimen -->
+									<id extension="%Procedures_SpecimenId%"/>
+								</specimenRole>
+							</specimen>
+							<!-- MAY [1..*] CCD-438, practitioner who performed procedure -->
+							<performer>
+								<assignedEntity>
+									<id root="fa11a0-d079-11dd-ad8b-0800200c9a66"/>
+									<representedOrganization>
+										<name>GHH Outpatient Clinic</name>
+									</representedOrganization>
+								</assignedEntity>
+							</performer>
+							<!-- SHOULD [1..*] CCD-448, component-->
+							<participant typeCode="DEV">
+								<!-- SHALL[1..1] CCD-450, component-->
+								<participantRole classCode="MANU">
+									<!-- Procedure instance template -->
+									<!-- SHALL [1..*] CCD-429, templateId-->
+									<templateId root="2.16.840.1.113883.10.20.1.52"/>
+									<!-- Product instance template -->
+									<!-- SHALL [1..*] CCD-429, id-->
+									<id root="03ca01b0-7be1-11db-9fe1-0800200c9a66"/>
+									<!-- SHALL [1..1] CCD-433, code-->
+									<scopingEntity nullFlavor="NA"/>
+								</participantRole>
+							</participant>
+							<!-- MAY [1..*] CCD-437, encounter location -->
+							<!-- SHALL [1..1] CCD-472, CCD-473, participant/@typeCode -->
+							<participant typeCode="LOC">
+								<!-- SHALL [1..1] CCD-474, CCD-475, participantRole/@classCode -->
+								<participantRole classCode="SDLOC">
+									<!-- MAY [1..1] CCD-476, CCD-477, code 2.16.840.1.113883.1.11.17660 ServiceDeliveryLocationRoleType DYNAMIC -->
+									<code codeSystem="2.16.840.1.113883.6.259" codeSystemName="HL7 Healthcare Service Location Code" code="%Procedures_ServiceDeliveryCode%" displayName="%Procedures_ServiceDeliveryDisplay%"/>
+								</participantRole>
+							</participant>
+						</procedure>
+					</entry>
+				</section>
+			</component>
+			<!-- 
+********************************************************
+Results section (DONE TOKENIZING)
+********************************************************
+-->
+			<component>
+				<!--SHOULD [1..1] section/templateId CCD-388-->
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.1.14"/>
+					<!-- SHALL [1..1] /@code=30954-2 CCD -389/390-->
+					<code code="30954-2" displayName="Relevant diagnostic tests &amp;or laboratory data" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+					<!--SHALL [1..1] title CCD-391-->
+					<!--SHOULD [1..1 title CCD-392, Case-insenstive language-->
+					<title>Results</title>
+					<!--SHALL [1..1] text CCD-388 -->
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th> </th>
+									<th>%Results_Organizer_EffectiveTime%</th>
+									<th> </th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan="3">
+										<content styleCode="%Results_Observation1_Reference%">%Results_Observation1_Display%</content>
+									</td>
+								</tr>
+								<tr>
+									<td>HGB (M 13-18 g/dl; F 12-16 g/dl)</td>
+									<td>13.2</td>
+									<td> </td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<!-- SHOULD [0..*] CCD-388, ALL ENTRIES ARE SHOULD -->
+					<entry typeCode="DRIV">
+						<!-- SHOULD [0..*] CCD-388, ALL ORGANIZERS ARE SHOULD-->
+						<!-- SHALL [1..1] /@moodCode="EVN" CCD-394-->
+						<!-- SHALL [1..1] /@classCode="BATTERY" -->
+						<organizer classCode="BATTERY" moodCode="EVN">
+							<!--SHALL [1..1]  CCD-393-->
+							<templateId root="2.16.840.1.113883.10.20.1.32"/>
+							<!-- Result organizer template -->
+							<!-- SHALL [1..*]  CCD-395-->
+							<id root="%Results_Organizer_Id%"/>
+							<!-- SHALL [1..1]  CCD-397, code-->
+							<!--SHOULD [1..1] CCD-398, code/@code from LOINC or SNOMED, MAY be selected from CPT-4 or HL7 ResultTypeCode -->
+							<code code="%Results_Organizer_Code%" displayName="%Results_Organizer_Display%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+							<!-- SHALL [1..1]  CCD-396-->
+							<!-- SHALL [1..1]  /@code="completed" -->
+							<statusCode code="completed"/>
+							<effectiveTime value="%Results_Organizer_EffectiveTime%"/>
+							<specimen>
+								<specimenRole>
+									<id extension="%Procedures_SpecimenId%"/>
+								</specimenRole>
+							</specimen>
+							<!--SHALL [1..*] CCD-402, component-->
+							<component>
+								<!--SHALL [1..*] CCD-405, observation-->
+								<!--SHALL [1..1] CCD-407, observation-->
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- Result observation template -->
+									<!--SHALL [1..1] CCD-407, templateId-->
+									<templateId root="2.16.840.1.113883.10.20.1.31"/>
+									<!--SHALL [1..*] CCD-409, id-->
+									<id root="%Results_Observation1_Id%"/>
+									<!--SHALL [1..1] CCD-412, code-->
+									<!--SHOULD [1..1] CCD-413 code/@code from LOINC or SNOMED, MAY be selected from CPT-4 -->
+									<code code="%Results_Observation1_Code%" displayName="%Results_Observation1_Display%" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC">
+										<originalText>
+											<reference value="#%Results_Observation1_Reference%"/>
+										</originalText>
+									</code>
+									<!--SHALL [1..1] CCD-410, statusCode-->
+									<statusCode code="completed"/>
+									<!--SHOULD [0..1] CCD-411, effectiveTime-->
+									<effectiveTime value="%Results_Observation1_EffectiveTime%"/>
+									<!--SHALL [1..1] CCD-416, value-->
+									<!--SHALL [1..1] CCD-417, value/@xsi:type="PQ"-->
+									<value xsi:type="%Results_Observation1_ValueType%" value="%Results_Observation1_Value%" unit="%Results_Observation1_ValueUnit%"/>
+									<!--SHOULD [0..1] CCD-418, interpretationCode-->
+									<interpretationCode code="%Results_Observation1_Interpretation%" codeSystem="2.16.840.1.113883.5.83"/>
+									<!--SHOULD [0..*] CCD-419, referenceRange-->
+									<referenceRange>
+										<!--SHALL NOT CCD-420, refererenceRange/observationRange/code-->
+										<observationRange>
+											<text>%Results_Observation1_RangeText%</text>
+										</observationRange>
+									</referenceRange>
+								</observation>
+							</component>
+						</organizer>
+					</entry>
+				</section>
+			</component>
+			<!-- 
+********************************************************
+Social History section (DONE TOKENIZING)
+********************************************************
+-->
+			<component>
+				<!-- SHOULD [1..1] CCD-232 section with templateId 20.1.15 -->
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.1.15"/>
+					<!-- SHALL [1..1] CCD-233 code -->
+					<!-- SHALL [1..1] CCD-234 code/@code='29762-2' 'Social history' LOINC -->
+					<code code="29762-2" codeSystem="2.16.840.1.113883.6.1" displayName="Social history" codeSystemName="LOINC"/>
+					<!-- SHALL [1..1] CCD-235 title -->
+					<!-- SHOULD [1..1] CCD-236, title/text() valued with case-insensitive... -->
+					<title>Social History</title>
+					<!-- SHALL [1..1] CCD-232 text -->
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Social History Element</th>
+									<th>Description</th>
+									<th>Effective Dates</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>%SocialHistory_TypeDisplay%</td>
+									<td>%SocialHistory_StringValue%</td>
+									<td>%SocialHistory_EffectiveTimeLow% - %SocialHistory_EffectiveTimeHigh%</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<!-- SHOULD [1..*] CCD-232 social history clinical statements -->
+					<entry typeCode="DRIV">
+						<!-- SHALL [1..1] CCD-237 observation -->
+						<!-- SHALL [1..1] CCD-238 observation/@classCode='OBS' -->
+						<!-- SHALL [1..1] CCD-239 observation/@moodCode='EVN' -->
+						<observation classCode="OBS" moodCode="EVN">
+							<!-- SHALL [1..1] CCD-237 template -->
+							<templateId root="2.16.840.1.113883.10.20.1.33"/>
+							<!-- SHALL [1..*] CCD-240 id -->
+							<id root="9b56c25d-9104-45ee-9fa4-e0f3afaa01c1"/>
+							<!-- SHOULD [1..1] CCD-243 code/@code LOINC or SNOMED CT -->
+							<!-- MAY [0..1] CCD-243 code/@code ValueSet 2.16.840.1.113883.1.11.20.18 SocialHistoryTypeCode STATIC -->
+							<code code="%SocialHistory_TypeCode%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="%SocialHistory_TypeDisplay%"/>
+							<!-- SHALL [1..1] CCD-241 statusCode -->
+							<!-- SHALL [1..1] CCD-242 statusCode/@code='completed' -->
+							<statusCode code="completed"/>
+							<effectiveTime>
+								<low value="%SocialHistory_EffectiveTimeLow%"/>
+								<high value="%SocialHistory_EffectiveTimeHigh%"/>
+							</effectiveTime>
+							<!-- SHALL [0..1] CCD-244 value can be any data-type -->
+							<!-- SHALL [1..1] CCD-244 when value is PQ, unit of measure must be UCUM -->
+							<value xsi:type="%SocialHistory_DataType%">%SocialHistory_StringValue%</value>
+							<!-- MAY [0..1] CCD-246 problem status observation -->
+							<!-- PARTIAL COPY OF PROBLEM STATUS OBSERVATION FROM PROBLEMS SAMPLE 
+									REPLACED TEMPLATE IDS WITH SOCIAL HISTORY STATUS OBSERVATION TEMPLATE
+									_____________________________________________________________ -->
+							<entryRelationship typeCode="REFR">
+								<!-- SHALL conform to status observation (templateId 2.16.840.1.113883.10.20.1.57) CCD-163 -->
+								<!-- SHALL [1..1) Observation (a status observation SHALL be an observation CCD-508] -->
+								<!-- SHALL [1..1] @ classCode "OBS" CCD-510-->
+								<!-- SHALL [1..1] @moodCode "EVN" CCD-511 -->
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- SHALL [1..1] CCD-247 template (social history status observation) -->
+									<templateId root="2.16.840.1.113883.10.20.1.56"/>
+									<!-- SHALL [1..1] CCD-247 template (social history status obs is conformant to status obs) -->
+									<templateId root="2.16.840.1.113883.10.20.1.57"/>
+									<!-- SHALL [1..1] observation/code ="33999-4" STATIC CCD-513 -->
+									<code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Status"/>
+									<!-- SHALL [1..1] statusCode CCD- 514-->
+									<!-- SHALL [1..1] @code= completed CCD-515 -->
+									<statusCode code="completed"/>
+									<!-- SHALL [1..1] CCD-248 value/@code ValueSet 2.16.840.1.113883.1.11.20.17 SocialHistoryStatusCode STATIC -->
+									<value xsi:type="CE" code="%SocialHistory_StatusCode%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="%SocialHistory_StatusDisplay%"/>
+									<!-- SHALL NOT  contain any additional Observation attributes CCD-517-->
+									<!-- SHALL NOT  contain any additional Observation participants CCD-518-->
+									<!-- SHALL NOT  contain any additional Observation relationships CCD-519-->
+								</observation>
+							</entryRelationship>
+							<!-- _____________________________________________________________
+									END PARTIAL COPY OF PROBLEM STATUS OBSERVATION FROM PROBLEMS SAMPLE -->
+						</observation>
+					</entry>
+				</section>
+			</component>
+			<!-- 
+********************************************************
+Vital Signs section (DONE TOKENIZING)
+********************************************************
+-->
+			<component>
+				<!-- SHOULD [1..1] CCD-381, section with templateId 20.1.16 -->
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.1.16"/>
+					<!-- SHALL [1..1] CCD-382, code -->
+					<!-- SHALL [1..1] CCD-383, code/@code='38716-3' -->
+					<code code="8716-3" codeSystem="2.16.840.1.113883.6.1" displayName="Vital signs" codeSystemName="LOINC"/>
+					<!-- SHALL [1..1] CCD-384, title -->
+					<!-- SHOULD [1..1] CCD-385, title/text() valued with case-insensitive... -->
+					<title>Vital Signs</title>
+					<!-- SHALL [1..1] CCD-381, section with template id must have a narrative block -->
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th align="right">Date / Time: </th>
+									<th>%VitalSigns_Organizer_EffectiveTime%</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th align="left">%VitalSigns_Observation1_TypeDisplay%</th>
+									<td>%VitalSigns_Observation1_RefRangeLowValue% %VitalSigns_Observation1_RefRangeUnit%</td>
+									<td>%VitalSigns_Observation1_RefRangeHighValue% %VitalSigns_Observation1_RefRangeUnit%</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<!-- SHOULD [1..*] CCD-381, section with template id should have entries -->
+					<entry typeCode="DRIV">
+						<!-- SHOULD [1..*] CCD-381, section with template id should have entries with organizer that has template id 20.1.35 -->
+						<!-- SHALL [1..1] CCD-393, result organizer template id 20.1.32 represented by organizer element -->
+						<!-- SHALL [1..1] CCD-394, organizer/@moodCode “EVN” 2.16.840.1.113883.5.1001 ActMood STATIC -->
+						<organizer classCode="CLUSTER" moodCode="EVN">
+							<!-- SHALL [1..1] CCD-381, templateId 20.1.35 -->
+							<templateId root="2.16.840.1.113883.10.20.1.35"/>
+							<!-- SHALL [1..1] CCD-386, templateId 20.1.32 -->
+							<templateId root="2.16.840.1.113883.10.20.1.32"/>
+							<!-- SHALL [1..1] CCD-395, id -->
+							<id root="%VitalSigns_Organizer_Id%"/>
+							<!-- SHALL [1..1] CCD-397, CCD-398, code required, @code selected from LOINC or SNOMED, MAY be selected from CPT-4 or ValueSet 2.16.840.1.113883.1.11.20.16 ResultTypeCode STATIC -->
+							<code code="46680005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Vital signs"/>
+							<!-- SHALL [1..1] CCD-396, statsuCode -->
+							<statusCode code="completed"/>
+							<effectiveTime value="%VitalSigns_Organizer_EffectiveTime%"/>
+							<!-- SHALL [1..*] CCD-381, section with template id should have entries with organizer that has template id 20.1.35, each organizer must have one or more result observation -->
+							<!-- SHALL [1..*] CCD-402, component -->
+							<component>
+								<!-- SHALL [1..*] CCD-405, target of at least one component shall be a result observation (observation element and templateId 20.1.31) -->
+								<observation classCode="OBS" moodCode="EVN">
+									<!--SHALL [1..1] CCD-407, templateId-->
+									<templateId root="2.16.840.1.113883.10.20.1.31"/>
+									<!--SHALL [1..*] CCD-409, id-->
+									<id root="%VitalSigns_Observation1_Id%"/>
+									<!--SHALL [1..1] CCD-412, code-->
+									<!--SHOULD [1..1] CCD-413 code/@code from LOINC or SNOMED, MAY be selected from CPT-4 -->
+									<code code="%VitalSigns_Observation1_TypeCode%" displayName="%VitalSigns_Observation1_TypeDisplay%" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+									<!--SHALL [1..1] CCD-410, statusCode-->
+									<statusCode code="completed"/>
+									<!--SHOULD [0..1] CCD-411, effectiveTime-->
+									<effectiveTime value="%VitalSigns_Organizer_EffectiveTime%"/>
+									<!--SHALL [1..1] CCD-416, value-->
+									<!--SHALL [1..1] CCD-417, value/@xsi:type="PQ"-->
+									<value xsi:type="%VitalSigns_Observation1_ValueType%" value="%VitalSigns_Observation1_Value%" unit="%VitalSigns_Observation1_ValueUnit%"/>
+									<!--SHOULD [0..1] CCD-418, interpretationCode-->
+									<interpretationCode code="%VitalSigns_Observation1_Interpretation%" displayName="%VitalSigns_Observation1_InterpretationDisplay%" codeSystem="2.16.840.1.113883.5.83"/>
+									<!--SHOULD [0..*] CCD-419, referenceRange-->
+									<referenceRange>
+										<!--SHALL NOT CCD-420, refererenceRange/observationRange/code-->
+										<observationRange>
+											<value xsi:type="%VitalSigns_Observation1_RefRangeType%">
+												<low value="%VitalSigns_Observation1_RefRangeLowValue%" unit="%VitalSigns_Observation1_RefRangeUnit%"/>
+												<high value="%VitalSigns_Observation1_RefRangeHighValue%" unit="%VitalSigns_Observation1_RefRangeUnit%"/>
+											</value>
+										</observationRange>
+									</referenceRange>
+								</observation>
+							</component>
+						</organizer>
+					</entry>
+				</section>
+			</component>
+			<component>
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.1.13"/>
+					<id root="623c71d7-7751-4a39-91d6-c70be8c81d9a"/>
+					<code code="48764-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Summary purpose"/>
+					<title>Summary purpose</title>
+					<text>Summary purpose goes here...</text>
+					<entry>
+						<act classCode="ACT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.1.30"/>
+							<id root="851aecd7-210e-4358-943c-20b22b6eb9cb"/>
+							<code code="23745001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Documentation procedure"/>
+							<statusCode code="completed"/>
+							<effectiveTime>
+								<low value="2011"/>
+								<high value="2011"/>
+							</effectiveTime>
+							<entryRelationship typeCode="RSON">
+								<observation classCode="COND" moodCode="EVN">
+									<code/>
+								</observation>
+							</entryRelationship>
+						</act>
+					</entry>
+				</section>
+			</component>
+		</structuredBody>
+	</component>
+</ClinicalDocument>

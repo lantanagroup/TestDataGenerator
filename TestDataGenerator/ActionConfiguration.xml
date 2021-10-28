@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ActionConfiguration.xsd">
+	<good>
+		<!-- Removes the value from the advance directives. This can be removed later if it is determined the value will never be needed -->
+		<instance name="AdvanceDirective_RemoveValue" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component/cda:section[1]/cda:entry/cda:observation" createNew="false">
+			<filter>
+				<specificRowCount section="AdvanceDirective" value="1-9"/>
+			</filter>
+			<action-remove location="cda:value"/>
+		</instance>
+		<instance name="Allergy_AddEntry2" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section" createNew="false">
+			<filter>
+				<specificRowCount section="Allergies" value="1-3,5-8"/>
+			</filter>
+			<action-add location=".">
+				<element name="cda:entry">
+					<external>
+						<act classCode="ACT" moodCode="EVN" xmlns="urn:hl7-org:v3">
+							<templateId root="2.16.840.1.113883.10.20.1.27"/>
+							<id extension="%Allergy2_IdRoot%"/>
+							<code nullFlavor="NA"/>
+							<effectiveTime value="%Allergy2_Time%"/>
+							<entryRelationship typeCode="SUBJ">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.1.18"/>
+									<id extension="4adc1020-7b14-11db-9fe1-0800200c9a66"/>
+									<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+									<statusCode code="completed"/>
+									<effectiveTime value="20110215"/>
+									<value xsi:type="CD" code="%Allergy2_TypeCode%" displayName="%Allergy2_TypeDisplay%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+									<participant typeCode="CSM">
+										<participantRole classCode="MANU">
+											<playingEntity classCode="MMAT">
+												<code code="%Allergy2_DrugCode%" codeSystem="%Allergy2_DrugCodeSystem%" displayName="%Allergy2_DrugDisplay%" codeSystemName="%Allergy2_DrugCodeSystemName%">
+													<originalText>
+														<reference value="%Allergy2_SubstanceReference%"/>
+													</originalText>
+												</code>
+											</playingEntity>
+										</participantRole>
+									</participant>
+									<entryRelationship typeCode="REFR">
+										<observation classCode="OBS" moodCode="EVN">
+											<code code="48766-0" displayName="Information Source" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+											<statusCode code="completed"/>
+											<value xsi:type="ST" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Unknown</value>
+										</observation>
+									</entryRelationship>
+									<entryRelationship typeCode="REFR">
+										<observation classCode="OBS" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.10.20.1.39"/>
+											<templateId root="2.16.840.1.113883.10.20.1.57"/>
+											<code code="33999-4" displayName="Status" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+											<statusCode code="completed"/>
+											<value xsi:type="CE" code="%Allergy2_StatusCode%" codeSystem="2.16.840.1.113883.6.96" displayName="%Allergy2_StatusDisplay%" codeSystemName="SNOMED CT" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+												<originalText>
+													<reference value="%Allergy2_StatusReference%"/>
+												</originalText>
+											</value>
+										</observation>
+									</entryRelationship>
+									<entryRelationship typeCode="MFST" inversionInd="true">
+										<observation classCode="OBS" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.10.20.1.54"/>
+											<code nullFlavor="NI"/>
+											<statusCode code="completed"/>
+											<value xsi:type="CD" code="%Allergy2_ReactionCode%" displayName="%Allergy2_ReactionDisplay%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+												<originalText>
+													<reference value="%Allergy2_ReactionReference%"/>
+												</originalText>
+											</value>
+											<entryRelationship typeCode="SUBJ">
+												<observation classCode="OBS" moodCode="EVN">
+													<templateId root="2.16.840.1.113883.10.20.1.55"/>
+													<code code="SEV" displayName="Severity Observation" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode"/>
+													<statusCode code="completed"/>
+													<value xsi:type="CD" code="%Allergy2_SeverityCode%" displayName="%Allergy2_SeverityDisplay%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
+														<originalText>
+															<reference value="%Allergy2_SeverityReference%"/>
+														</originalText>
+													</value>
+												</observation>
+											</entryRelationship>
+											<entryRelationship typeCode="RSON">
+												<procedure classCode="PROC" moodCode="EVN">
+													<templateId root="2.16.840.1.113883.10.20.1.29"/>
+													<id nullFlavor="NI"/>
+													<code nullFlavor="NI" codeSystem="2.16.840.1.113883.6.1"/>
+													<statusCode nullFlavor="NI"/>
+													<effectiveTime nullFlavor="NA"/>
+												</procedure>
+											</entryRelationship>
+										</observation>
+									</entryRelationship>
+								</observation>
+							</entryRelationship>
+						</act>
+					</external>
+				</element>
+			</action-add>
+			<action-add location="cda:entry[2]">
+				<attribute name="typeCode" value="DRIV"/>
+			</action-add>
+		</instance>
+		<instance name="Allergy_AddEntry3" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section" createNew="false">
+			<filter>
+				<specificRowCount section="Allergies" value="1,2,5,8"/>
+			</filter>
+			<action-add location=".">
+				<element name="cda:entry">
+					<external>
+						<act classCode="ACT" moodCode="EVN" xmlns="urn:hl7-org:v3">
+							<templateId root="2.16.840.1.113883.10.20.1.27"/>
+							<id extension="%Allergy3_IdRoot%"/>
+							<code nullFlavor="NA"/>
+							<effectiveTime value="%Allergy3_Time%"/>
+							<entryRelationship typeCode="SUBJ">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.1.18"/>
+									<id extension="4adc1020-7b14-11db-9fe1-0800200c9a66"/>
+									<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+									<statusCode code="completed"/>
+									<effectiveTime value="20110215"/>
+									<value xsi:type="CD" code="%Allergy3_TypeCode%" displayName="%Allergy3_TypeDisplay%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+									<participant typeCode="CSM">
+										<participantRole classCode="MANU">
+											<playingEntity classCode="MMAT">
+												<code code="%Allergy3_DrugCode%" codeSystem="%Allergy3_DrugCodeSystem%" displayName="%Allergy3_DrugDisplay%" codeSystemName="%Allergy3_DrugCodeSystemName%">
+													<originalText>
+														<reference value="%Allergy3_SubstanceReference%"/>
+													</originalText>
+												</code>
+											</playingEntity>
+										</participantRole>
+									</participant>
+									<entryRelationship typeCode="REFR">
+										<observation classCode="OBS" moodCode="EVN">
+											<code code="48766-0" displayName="Information Source" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+											<statusCode code="completed"/>
+											<value xsi:type="ST" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Unknown</value>
+										</observation>
+									</entryRelationship>
+									<entryRelationship typeCode="REFR">
+										<observation classCode="OBS" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.10.20.1.39"/>
+											<templateId root="2.16.840.1.113883.10.20.1.57"/>
+											<code code="33999-4" displayName="Status" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+											<statusCode code="completed"/>
+											<value xsi:type="CE" code="%Allergy3_StatusCode%" codeSystem="2.16.840.1.113883.6.96" displayName="%Allergy3_StatusDisplay%" codeSystemName="SNOMED CT" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+												<originalText>
+													<reference value="%Allergy3_StatusReference%"/>
+												</originalText>
+											</value>
+										</observation>
+									</entryRelationship>
+									<entryRelationship typeCode="MFST" inversionInd="true">
+										<observation classCode="OBS" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.10.20.1.54"/>
+											<code nullFlavor="NI"/>
+											<statusCode code="completed"/>
+											<value xsi:type="CD" code="%Allergy3_ReactionCode%" displayName="%Allergy3_ReactionDisplay%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+												<originalText>
+													<reference value="%Allergy3_ReactionReference%"/>
+												</originalText>
+											</value>
+											<entryRelationship typeCode="SUBJ">
+												<observation classCode="OBS" moodCode="EVN">
+													<templateId root="2.16.840.1.113883.10.20.1.55"/>
+													<code code="SEV" displayName="Severity Observation" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode"/>
+													<statusCode code="completed"/>
+													<value xsi:type="CD" code="%Allergy3_SeverityCode%" displayName="%Allergy3_SeverityDisplay%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
+														<originalText>
+															<reference value="%Allergy3_SeverityReference%"/>
+														</originalText>
+													</value>
+												</observation>
+											</entryRelationship>
+											<entryRelationship typeCode="RSON">
+												<procedure classCode="PROC" moodCode="EVN">
+													<templateId root="2.16.840.1.113883.10.20.1.29"/>
+													<id nullFlavor="NI"/>
+													<code nullFlavor="NI" codeSystem="2.16.840.1.113883.6.1"/>
+													<statusCode nullFlavor="NI"/>
+													<effectiveTime nullFlavor="NA"/>
+												</procedure>
+											</entryRelationship>
+										</observation>
+									</entryRelationship>
+								</observation>
+							</entryRelationship>
+						</act>
+					</external>
+				</element>
+			</action-add>
+			<action-add location="cda:entry[3]">
+				<attribute name="typeCode" value="DRIV"/>
+			</action-add>
+		</instance>
+		<instance name="Result_AddComponent2" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[13]/cda:section" createNew="false">
+			<filter>
+				<specificRowCount section="Results" value="1,3,4,5,7,8"/>
+			</filter>
+			<action-add location="cda:entry/cda:organizer">
+				<element name="cda:component">
+					<external>
+						<observation classCode="OBS" moodCode="EVN" xmlns="urn:hl7-org:v3">
+							<templateId root="2.16.840.1.113883.10.20.1.31"/>
+							<id root="%Results_Observation2_Id%"/>
+							<code code="%Results_Observation2_Code%" displayName="%Results_Observation2_Display%" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC">
+								<originalText>
+									<reference value="#%Results_Observation2_Reference%"/>
+								</originalText>
+							</code>
+							<statusCode code="completed"/>
+							<effectiveTime value="%Results_Observation2_EffectiveTime%"/>
+							<value xsi:type="%Results_Observation2_ValueType%" value="%Results_Observation2_Value%" unit="%Results_Observation2_ValueUnit%"/>
+							<interpretationCode code="%Results_Observation2_Interpretation%" codeSystem="2.16.840.1.113883.5.83"/>
+							<referenceRange>
+								<observationRange>
+									<value xsi:type="%Results_Observation2_RangeValueType%">
+										<low value="%Results_Observation2_RangeValueLow%" unit="%Results_Observation2_RangeValueLowUnit%"/>
+										<high value="%Results_Observation2_RangeValueHigh%" unit="%Results_Observation2_RangeValueHighUnit%"/>
+									</value>
+								</observationRange>
+							</referenceRange>
+						</observation>
+					</external>
+				</element>
+			</action-add>
+		</instance>
+		<instance name="Result_AddComponent2" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[15]/cda:section" createNew="false">
+			<action-add location="cda:entry/cda:organizer">
+				<element name="cda:component">
+					<external>
+						<observation classCode="OBS" moodCode="EVN" xmlns="urn:hl7-org:v3">
+							<templateId root="2.16.840.1.113883.10.20.1.31"/>
+							<id root="%VitalSigns_Observation2_Id%"/>
+							<code code="%VitalSigns_Observation2_TypeCode%" displayName="%VitalSigns_Observation2_TypeDisplay%" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+							<statusCode code="completed"/>
+							<effectiveTime value="%VitalSigns_Organizer_EffectiveTime%"/>
+							<value xsi:type="%VitalSigns_Observation2_ValueType%" value="%VitalSigns_Observation2_Value%" unit="%VitalSigns_Observation2_ValueUnit%"/>
+							<interpretationCode code="%VitalSigns_Observation2_Interpretation%" displayName="%VitalSigns_Observation2_InterpretationDisplay%" codeSystem="2.16.840.1.113883.5.83"/>
+							<referenceRange>
+								<observationRange>
+									<value xsi:type="%VitalSigns_Observation2_RefRangeType%">
+										<low value="%VitalSigns_Observation2_RefRangeLowValue%" unit="%VitalSigns_Observation2_RefRangeUnit%"/>
+										<high value="%VitalSigns_Observation2_RefRangeHighValue%" unit="%VitalSigns_Observation2_RefRangeUnit%"/>
+									</value>
+								</observationRange>
+							</referenceRange>
+						</observation>
+					</external>
+				</element>
+			</action-add>
+		</instance>
+		<instance name="SocialHistory_RemoveEffectiveTimeHigh" createNew="false" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[14]/cda:section/cda:entry/cda:observation/cda:effectiveTime">
+			<filter>
+				<specificRowCount section="SocialHistory" value="4,5,9"/>
+			</filter>
+			<action-remove location="cda:high"/>
+		</instance>
+	</good>
+	<bad>
+		<!-- ENCOUNTERS SECTION -->
+		<!--
+		<instance name="Encounters_CONF-453"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody">
+			<filter><randomRowCount/></filter>
+			<action-add location=".">
+				<element name="cda:component">
+					<external>
+						<section xmlns="urn:hl7-org:v3">
+							<templateId root="2.16.840.1.113883.10.20.1.3" />						
+						</section>
+					</external>
+				</element>
+			</action-add>
+			<action-comment value="ERROR - CONF-453 (duplicate encounters section)" location="cda:component[last()]"/>
+		</instance>
+				
+		<instance name="Encounters_CONF-454"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[3]/cda:section">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-454 (missing code)" location="."/>
+			<action-remove location="cda:code"/>
+		</instance>
+				
+		<instance name="Encounters_CONF-455"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[3]/cda:section/cda:code">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-455 (incorrect code)" location="."/>
+			<action-set location="@code" value="ABC"/>
+			<action-set location="@displayName" value="XYZ"/>
+		</instance>
+
+		<instance name="Encounters_CONF-456"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[3]/cda:section">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-456 (missing title)" location="."/>
+			<action-remove location="cda:title"/>
+		</instance>
+
+		<instance name="Encounters_CONF-457"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[3]/cda:section">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-457 (title not formatted properly)" location="cda:title"/>
+			<action-set location="cda:title/text()" value="ABC"/>
+		</instance>
+
+		<instance name="Encounters_CONF-458"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[3]/cda:section/cda:entry">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-458 (missing entry)" location="."/>
+			<action-remove location="cda:encounter"/>
+		</instance>
+		
+		<instance name="Encounters_CONF-459"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[3]/cda:section/cda:entry/cda:encounter">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-459 (incorrect classCode)" location="."/>
+			<action-set location="@classCode" value="XYZ"/>
+		</instance>
+
+		<instance name="Encounters_CONF-460"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[3]/cda:section/cda:entry/cda:encounter">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-460 (incorrect moodCode)" location="."/>
+			<action-set location="@moodCode" value="XYZ"/>
+		</instance>
+
+		<instance name="Encounters_CONF-461"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[3]/cda:section/cda:entry/cda:encounter">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-461 (missing id)" location="."/>
+			<action-remove location="cda:id"/>
+		</instance>
+
+		<instance name="Encounters_CONF-462"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[3]/cda:section/cda:entry/cda:encounter">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-462 (missing code)" location="."/>
+			<action-remove location="cda:code"/>
+		</instance>
+
+		<instance name="Encounters_CONF-463"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[3]/cda:section/cda:entry/cda:encounter/cda:code">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-463 (incorrect code)" location="."/>
+			<action-set location="@code" value="ABC"/>
+			<action-set location="@displayName" value="XYZ"/>
+		</instance>
+
+		<instance name="Encounters_CONF-464"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[3]/cda:section/cda:entry/cda:encounter">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-464 (multiple effectiveTime)" location="."/>
+			<action-add location=".">
+				<element name="cda:effectiveTime" after="cda:effectiveTime"/>
+			</action-add>
+			<action-add location=".">
+				<element name="cda:effectiveTime" after="cda:effectiveTime[2]"/>
+			</action-add>
+		</instance>
+
+		<instance name="Encounters_CONF-467"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[3]/cda:section/cda:entry/cda:encounter/cda:performer/cda:assignedEntity">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-467 (multiple code)" location="."/>
+			<action-add location=".">
+				<element name="cda:code" after="cda:code"/>
+			</action-add>
+			<action-add location=".">
+				<element name="cda:code" after="cda:code[2]"/>
+			</action-add>
+		</instance>
+-->
+	<!-- NOTE: No informant present in sample data! -->
+
+<!--		
+		<instance name="Encounters_CONF-470"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[3]/cda:section/cda:entry/cda:encounter">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-470 (missing source)" location="."/>
+			<action-remove location="cda:informant"/>
+		</instance>
+
+		<instance name="Encounters_CONF-474"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[3]/cda:section/cda:entry/cda:encounter/cda:participant[@typeCode="LOC"]">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-474 (multiple participantRole)" location="."/>
+			<action-add location=".">
+				<element name="cda:participantRole"/>
+			</action-add>
+			<action-add location=".">
+				<element name="cda:participantRole"/>
+			</action-add>
+		</instance>
+
+		<instance name="Encounters_CONF-475"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[3]/cda:section/cda:entry/cda:encounter/cda:participant[@typeCode="LOC"]/cda:participantRole">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-475 (participantRole invalid classCode)" location="."/>
+			<action-set location="@classCode" value="XYZ"/>
+		</instance>
+
+		<instance name="Encounters_CONF-476"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[3]/cda:section/cda:entry/cda:encounter/cda:participant[@typeCode="LOC"]/participantRole">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-476 (multiple code)" location="."/>
+			<action-add location=".">
+				<element name="cda:code"/>
+			</action-add>
+			<action-add location=".">
+				<element name="cda:code"/>
+			</action-add>
+		</instance>
+
+		<instance name="Encounters_CONF-477"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[3]/cda:section/cda:entry/cda:encounter/cda:participant[@typeCode="LOC"]/participantRole/cda:code">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-477 (code value)" location="."/>
+			<action-set location="@code" value="ABC"/>
+			<action-set location="@displayName" value="XYZ"/>
+		</instance>
+
+		<instance name="Encounters_CONF-478"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[3]/cda:section/cda:entry/cda:encounter/cda:participant[@typeCode="LOC"]/participantRole">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-478 (multiple playingEntity)" location="."/>
+			<action-add location=".">
+				<element name="cda:playingEntity"/>
+			</action-add>
+			<action-add location=".">
+				<element name="cda:playingEntity"/>
+			</action-add>
+		</instance>
+
+		<instance name="Encounters_CONF-479"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[3]/cda:section/cda:entry/cda:encounter/cda:participant[@typeCode="LOC"]/cda:playingEntity">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-479 (invalid classCode)" location="."/>
+			<action-set location="@classCode" value="XYZ"/>
+		</instance>
+-->
+		<!-- PAYERS SECTION -->
+		<!--
+		<instance name="Payers_CONF-30"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody">
+			<filter><randomRowCount/></filter>
+			<action-add location=".">
+				<element name="cda:component">
+					<external>
+						<section xmlns="urn:hl7-org:v3">
+							<templateId root="2.16.840.1.113883.10.20.1.9" />						
+						</section>
+					</external>
+				</element>
+			</action-add>
+			<action-comment value="ERROR - CONF-30 (duplicate payers section)" location="cda:component[last()]"/>
+		</instance>
+				
+		<instance name="Payers_CONF-31"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[9]/cda:section">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-31 (missing code)" location="."/>
+			<action-remove location="cda:code"/>
+		</instance>
+				
+		<instance name="Payers_CONF-32"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[9]/cda:section/cda:code">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-32 (incorrect code)" location="."/>
+			<action-set location="@code" value="ABC"/>
+			<action-set location="@displayName" value="XYZ"/>
+		</instance>
+
+		<instance name="Payers_CONF-33"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[9]/cda:section">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-33 (missing title)" location="."/>
+			<action-remove location="cda:title"/>
+		</instance>
+
+		<instance name="Payers_CONF-34"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[9]/cda:section">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-34 (title not formatted properly)" location="cda:title"/>
+			<action-set location="cda:title/text()" value="ABC"/>
+		</instance>
+		-->
+
+		<!-- FUNCTIONAL STATUS -->
+<!--
+		<instance name="Functional_CONF-123"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[5]">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-123 (multiple section)" location="."/>
+			<action-add location=".">
+				<element name="cda:section">
+					<external>
+						<templateId root="2.16.840.1.113883.10.20.1.5"/>
+					</external>
+				</element>
+			</action-add>
+		</instance>
+		<instance name="Functional_CONF-124"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[5]/cda:section">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-124 (missing code)" location="."/>
+			<action-remove location="cda:code"/>
+		</instance>
+
+		<instance name="Functional_CONF-125"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[5]/cda:section/cda:code">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-125 (incorrect code value)" location="."/>
+			<action-set location="@code" value="ABC"/>
+			<action-set location="@displayName" value="XYZ"/>
+		</instance>
+
+		<instance name="Functional_CONF-126"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[5]/cda:section">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-126 (missing title)" location="."/>
+			<action-remove location="cda:title"/>
+		</instance>
+
+		<instance name="Functional_CONF-127"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[5]/cda:section">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-127 (incorrect title value)" location="."/>
+			<action-set location="cda:title/text()" value="ABC"/>
+		</instance>
+
+		<instance name="Functional_CONF-128"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[5]/cda:section">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-128 (multiple code)" location="."/>
+			<action-add location=".">
+				<element name="cda:code" after="cda:code"/>
+			</action-add>
+			<action-add location=".">
+				<element name="cda:code" after="cda:code[2]"/>
+			</action-add>
+		</instance>
+
+		<instance name="Functional_CONF-133"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[5]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:value[@xsi:type="CD"]">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-133 (code system)" location="."/>
+			<action-set location="@codeSystem" value="XYZ"/>
+		</instance>
+		
+		<instance name="Functional_CONF-136"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[5]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-136 (multiple status)" location="."/>
+			<action-add location=".">
+				<element name="cda:statusCode"/>
+			</action-add>
+			<action-add location=".">
+				<element name="cda:statusCode"/>
+			</action-add>
+		</instance>
+
+		<instance name="Functional_CONF-137"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[5]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship/cda:observation">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-137 (multiple status)" location="."/>
+			<action-add location=".">
+				<element name="cda:statusCode"/>
+			</action-add>
+			<action-add location=".">
+				<element name="cda:statusCode"/>
+			</action-add>
+		</instance>
+
+		<instance name="Functional_CONF-138"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[5]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship/cda:observation/cda:statusCode">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-138 (invalid status value)" location="."/>
+			<action-set location="@code" value="XYZ"/>
+		</instance>
+
+		<instance name="Functional_CONF-139"
+			rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[5]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship/cda:observation/cda:value">
+			<filter><randomRowCount/></filter>
+			<action-comment value="ERROR - CONF-139 (invalid value value)" location="."/>
+			<action-set location="@code" value="XYZ"/>
+			<action-set location="@displayName" value="123"/>
+		</instance>
+-->
+	</bad>
+</ActionConfiguration>

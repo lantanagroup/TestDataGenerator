@@ -1,0 +1,313 @@
+<bad xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ActionConfiguration-bad.xsd">
+	<instances>
+		<!-- SECTION -->
+		
+		<instance name="CONF-256_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-add location=".">
+				<element name="cda:component">
+					<external>
+						<section xmlns="urn:hl7-org:v3">
+							<templateId root="2.16.840.1.113883.10.20.1.2" />						
+						</section>
+					</external>
+				</element>
+			</action-add>
+			<action-comment value="ERROR - CONF-256 (duplicate allergies section)" location="cda:component[last()]"/>
+		</instance>
+				
+		<instance name="CONF-258_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-258 (missing code)" location="."/>
+			<action-remove location="cda:code"/>
+		</instance>
+				
+		<instance name="CONF-259_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:code">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-259 (incorrect code)" location="."/>
+			<action-set location="@code" value="ABC"/>
+			<action-set location="@displayName" value="XYZ"/>
+		</instance>
+	
+		<instance name="CONF-260_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-260 (missing title)" location="."/>
+			<action-remove location="cda:title"/>
+		</instance>
+	
+		<instance name="CONF-261_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-261 (title not formatted properly)" location="cda:title"/>
+			<action-set location="cda:title/text()" value="ABC"/>
+		</instance>
+		
+		<!-- OBSERVATION -->
+		
+		<instance name="CONF-262_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-262 (procedure instead of observation)" location="."/>
+			<action-remove location="cda:observation"/>
+			<action-add location=".">
+				<element>
+					<external>
+						<procedure classCode="PROC" moodCode="EVN" xmlns="urn:hl7-org:v3">
+							<templateId root="2.16.840.1.113883.10.20.1.18"/>
+						</procedure>
+					</external>
+				</element>
+			</action-add>
+		</instance>
+		
+		<instance name="CONF-263_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-263 (invalid @moodCode)"/>
+			<action-set location="@moodCode" value="DEF"/>
+		</instance>
+		
+		<instance name="CONF-264_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-264 (missing statusCode)"/>
+			<action-remove location="cda:statusCode"/>
+		</instance>
+		
+		<instance name="CONF-265_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="cda:statusCode" value="ERROR - CONF-265 (statusCode/@code is not 'completed')"/>
+			<action-set location="cda:statusCode/@code" value="ABC"/>
+		</instance>
+		
+		<instance name="CONF-267_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="cda:value" value="ERROR - CONF-267 (invalid value/@code and value/@displayName)"/>
+			<action-set location="cda:value/@code" value="ABC"/>
+			<action-set location="cda:value/@displayName" value="XYZ"/>
+		</instance>
+		
+		<!-- STATUS -->
+		
+		<instance name="CONF-271_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship[2]/cda:observation">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-271 (missing template 20.1.57, not conformant)"/>
+			<action-remove location="cda:templateId[@root='2.16.840.1.113883.10.20.1.57']"/>
+		</instance>
+		
+		<instance name="CONF-272_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship[2]/cda:observation">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-272 (incorrect value/@code and value/@displayName)"/>
+			<action-set location="cda:value/@code" value="ABC"/>
+			<action-set location="cda:value/@displayName" value="XYZ"/>
+		</instance>
+		
+		<!-- AGENT -->
+		
+		<instance name="CONF-273_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-273 (missing agent participant)"/>
+			<action-remove location="cda:participant"/>
+		</instance>
+		
+		<instance name="CONF-274_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:participant">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-274 (agent participant missing participantRole/playingEntity)"/>
+			<action-remove location="cda:participantRole"/>
+		</instance>
+		
+		<instance name="CONF-275_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:participant">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-275 (invalid participant/@typeCode)"/>
+			<action-set location="@typeCode" value="AUTHEN"/>
+		</instance>
+		
+		<instance name="CONF-276_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:participant/cda:participantRole">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-276 (invalid participantRole/@classCode)"/>
+			<action-set location="@classCode" value="ACCESS"/>
+		</instance>
+		
+		<instance name="CONF-277_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:participant/cda:participantRole/cda:playingEntity">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-277 (invalid playingEntity/@classCode)"/>
+			<action-set location="@classCode" value="ANM"/>
+		</instance>
+		
+		<instance name="CONF-278_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:participant/cda:participantRole/cda:playingEntity">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-278 (missing code)"/>
+			<action-remove location="cda:code"/>
+		</instance>
+		
+		<instance name="CONF-279_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:participant/cda:participantRole/cda:playingEntity">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="cda:code" value="ERROR - CONF-279 (invalid code/@code and code/@displayName)"/>
+			<action-set location="cda:code/@code" value="ABC"/>
+			<action-set location="cda:code/@displayName" value="XYZ"/>
+		</instance>
+		
+		<!-- REACTION -->
+		
+		<instance name="CONF-281_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship[3]">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-281 (invalid @typeCode)"/>
+			<action-set location="@typeCode" value="COMP"/>
+		</instance>
+		
+		<instance name="CONF-282_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship[3]">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-282 (represented with procedure instead of observation)"/>
+			<action-remove location="cda:observation"/>
+			<action-add location=".">
+				<element>
+					<external>
+						<procedure classCode="PROC" moodCode="EVN" xmlns="urn:hl7-org:v3">
+							<templateId root="2.16.840.1.113883.10.20.1.54"/>
+						</procedure>
+					</external>
+				</element>
+			</action-add>
+		</instance>
+		
+		<instance name="CONF-283_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship[3]/cda:observation">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-283 (invalid @classCode)"/>
+			<action-set location="@classCode" value="COND"/>
+		</instance>
+		
+		<instance name="CONF-284_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship[3]/cda:observation">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-284 (invalid @moodCode)"/>
+			<action-set location="@moodCode" value="DEF"/>
+		</instance>
+		
+		<instance name="CONF-285_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship[3]/cda:observation">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-285 (missing statusCode)"/>
+			<action-remove location="cda:statusCode"/>
+		</instance>
+		
+		<instance name="CONF-286_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship[3]/cda:observation">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-286 (invalid statusCode/@code)"/>
+			<action-set location="cda:statusCode/@code" value="ABC"/>
+		</instance>
+		
+		<instance name="CONF-287_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship[3]/cda:observation/cda:entryRelationship[1]">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-287 (represented with procedure instead of observation)"/>
+			<action-remove location="cda:observation"/>
+			<action-add location=".">
+				<element>
+					<external>
+						<procedure classCode="PROC" moodCode="EVN" xmlns="urn:hl7-org:v3">
+							<templateId root="2.16.840.1.113883.10.20.1.55"/>
+						</procedure>
+					</external>
+				</element>
+			</action-add>
+		</instance>
+		
+		<instance name="CONF-288_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship[3]/cda:observation/cda:entryRelationship[1]">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-287 (invalid @typeCode)"/>
+			<action-set location="@typeCode" value="MFST"/>
+		</instance>
+		
+		<instance name="CONF-289_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship[3]/cda:observation/cda:entryRelationship[1]/cda:observation">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-289 (invalid @classCode)"/>
+			<action-set location="@classCode" value="COND"/>
+		</instance>
+		
+		<instance name="CONF-290_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship[3]/cda:observation/cda:entryRelationship[1]/cda:observation">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-290 (invalid @moodCode)"/>
+			<action-set location="@moodCode" value="DEF"/>
+		</instance>
+		
+		<instance name="CONF-291_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship[3]/cda:observation/cda:entryRelationship[1]/cda:observation">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-291 (missing statusCode)"/>
+			<action-remove location="cda:statusCode"/>
+		</instance>
+		
+		<instance name="CONF-292_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship[3]/cda:observation/cda:entryRelationship[1]/cda:observation">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-292 (incorrect statusCode/@code)"/>
+			<action-set location="cda:statusCode/@code" value="ABC"/>
+		</instance>
+		
+		<instance name="CONF-293_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship[3]/cda:observation/cda:entryRelationship[1]/cda:observation">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-293 (missing code)"/>
+			<action-remove location="cda:code"/>
+		</instance>
+		
+		<instance name="CONF-294_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship[3]/cda:observation/cda:entryRelationship[1]/cda:observation">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-294 (invalid code/@code)"/>
+			<action-set location="cda:code/@code" value="ABC"/>
+		</instance>
+		
+		<instance name="CONF-295_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship[3]/cda:observation/cda:entryRelationship[1]/cda:observation">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-295 (missing value)"/>
+			<action-remove location="cda:value"/>
+		</instance>
+		
+		<instance name="CONF-296_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship[3]/cda:observation/cda:entryRelationship[2]">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-296 (invalid @typeCode)"/>
+			<action-set location="@typeCode" value="COMP"/>
+		</instance>
+		
+		<instance name="CONF-297_allergies" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship[3]/cda:observation/cda:entryRelationship[2]">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment location="." value="ERROR - CONF-297 (does not contain a clinical statement, statement is missing templateId)"/>
+			<action-remove location="cda:procedure"/>
+			<action-add location=".">
+				<element>
+					<external>
+						<observation classCode="OBS" moodCode="EVN" xmlns="urn:hl7-org:v3">
+							<code/>
+						</observation>
+					</external>
+				</element>
+			</action-add>
+		</instance>
+	</instances>
+</bad>

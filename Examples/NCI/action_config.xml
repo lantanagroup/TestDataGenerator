@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cd_page [
+<!ENTITY header SYSTEM "action_config-header.xml">
+<!ENTITY other SYSTEM "action_config-other.xml">
+<!ENTITY encounters SYSTEM "action_config-encounters.xml">
+<!ENTITY payers SYSTEM "action_config-payers.xml">
+<!ENTITY results SYSTEM "action_config-results.xml">
+<!ENTITY functional_status SYSTEM "action_config-functional_status.xml">
+<!ENTITY allergies SYSTEM "action_config-allergies.xml">
+<!ENTITY problems SYSTEM "action_config-problems.xml">
+<!ENTITY family_history SYSTEM "action_config-family_history.xml">
+<!ENTITY social_history SYSTEM "action_config-social_history.xml">
+<!ENTITY medical_equipment SYSTEM "action_config-medical_equipment.xml">
+<!ENTITY procedures SYSTEM "action_config-procedures.xml">
+<!ENTITY plan_of_care SYSTEM "action_config-plan_of_care.xml">
+<!ENTITY advance_directives SYSTEM "action_config-advance_directives.xml">
+<!ENTITY medications SYSTEM "action_config-medications.xml">
+<!ENTITY immunizations SYSTEM "action_config-immunizations.xml">
+]>
+<ActionConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Tool/ActionConfiguration.xsd">
+	<good>
+		<instances>
+			<!-- Removes the value from the advance directives. This can be removed later if it is determined the value will never be needed -->
+			<instance name="AdvanceDirective_RemoveValue" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component/cda:section[1]/cda:entry/cda:observation" createNew="false">
+				<filter>
+					<specificRowCount section="AdvanceDirective" value="1-9"/>
+				</filter>
+				<action-remove location="cda:value"/>
+			</instance>
+			<instance name="Allergy_AddEntry2" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section" createNew="false">
+				<filter>
+					<specificRowCount section="Allergies" value="1-3,5-8"/>
+				</filter>
+				<action-add location=".">
+					<element name="cda:entry">
+						<external>
+							<act classCode="ACT" moodCode="EVN" xmlns="urn:hl7-org:v3">
+								<templateId root="2.16.840.1.113883.10.20.1.27"/>
+								<id extension="%Allergy2_IdRoot%"/>
+								<code nullFlavor="NA"/>
+								<effectiveTime value="%Allergy2_Time%"/>
+								<entryRelationship typeCode="SUBJ">
+									<observation classCode="OBS" moodCode="EVN">
+										<templateId root="2.16.840.1.113883.10.20.1.18"/>
+										<id extension="4adc1020-7b14-11db-9fe1-0800200c9a66"/>
+										<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+										<statusCode code="completed"/>
+										<effectiveTime value="20110215"/>
+										<value xsi:type="CD" code="%Allergy2_TypeCode%" displayName="%Allergy2_TypeDisplay%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+										<participant typeCode="CSM">
+											<participantRole classCode="MANU">
+												<playingEntity classCode="MMAT">
+													<code code="%Allergy2_DrugCode%" codeSystem="%Allergy2_DrugCodeSystem%" displayName="%Allergy2_DrugDisplay%" codeSystemName="%Allergy2_DrugCodeSystemName%">
+														<originalText>
+															<reference value="%Allergy2_SubstanceReference%"/>
+														</originalText>
+													</code>
+												</playingEntity>
+											</participantRole>
+										</participant>
+										<entryRelationship typeCode="REFR">
+											<observation classCode="OBS" moodCode="EVN">
+												<code code="48766-0" displayName="Information Source" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+												<statusCode code="completed"/>
+												<value xsi:type="ST" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Unknown</value>
+											</observation>
+										</entryRelationship>
+										<entryRelationship typeCode="REFR">
+											<observation classCode="OBS" moodCode="EVN">
+												<templateId root="2.16.840.1.113883.10.20.1.39"/>
+												<templateId root="2.16.840.1.113883.10.20.1.57"/>
+												<code code="33999-4" displayName="Status" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+												<statusCode code="completed"/>
+												<value xsi:type="CE" code="%Allergy2_StatusCode%" codeSystem="2.16.840.1.113883.6.96" displayName="%Allergy2_StatusDisplay%" codeSystemName="SNOMED CT" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+													<originalText>
+														<reference value="%Allergy2_StatusReference%"/>
+													</originalText>
+												</value>
+											</observation>
+										</entryRelationship>
+										<entryRelationship typeCode="MFST" inversionInd="true">
+											<observation classCode="OBS" moodCode="EVN">
+												<templateId root="2.16.840.1.113883.10.20.1.54"/>
+												<code nullFlavor="NI"/>
+												<statusCode code="completed"/>
+												<value xsi:type="CD" code="%Allergy2_ReactionCode%" displayName="%Allergy2_ReactionDisplay%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+													<originalText>
+														<reference value="%Allergy2_ReactionReference%"/>
+													</originalText>
+												</value>
+												<entryRelationship typeCode="SUBJ">
+													<observation classCode="OBS" moodCode="EVN">
+														<templateId root="2.16.840.1.113883.10.20.1.55"/>
+														<code code="SEV" displayName="Severity Observation" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode"/>
+														<statusCode code="completed"/>
+														<value xsi:type="CD" code="%Allergy2_SeverityCode%" displayName="%Allergy2_SeverityDisplay%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
+															<originalText>
+																<reference value="%Allergy2_SeverityReference%"/>
+															</originalText>
+														</value>
+													</observation>
+												</entryRelationship>
+												<entryRelationship typeCode="RSON">
+													<procedure classCode="PROC" moodCode="EVN">
+														<templateId root="2.16.840.1.113883.10.20.1.29"/>
+														<id nullFlavor="NI"/>
+														<code nullFlavor="NI" codeSystem="2.16.840.1.113883.6.1"/>
+														<statusCode nullFlavor="NI"/>
+														<effectiveTime nullFlavor="NA"/>
+													</procedure>
+												</entryRelationship>
+											</observation>
+										</entryRelationship>
+									</observation>
+								</entryRelationship>
+							</act>
+						</external>
+					</element>
+				</action-add>
+				<action-add location="cda:entry[2]">
+					<attribute name="typeCode" value="DRIV"/>
+				</action-add>
+			</instance>
+			<instance name="Allergy_AddEntry3" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[2]/cda:section" createNew="false">
+				<filter>
+					<specificRowCount section="Allergies" value="1,2,5,8"/>
+				</filter>
+				<action-add location=".">
+					<element name="cda:entry">
+						<external>
+							<act classCode="ACT" moodCode="EVN" xmlns="urn:hl7-org:v3">
+								<templateId root="2.16.840.1.113883.10.20.1.27"/>
+								<id extension="%Allergy3_IdRoot%"/>
+								<code nullFlavor="NA"/>
+								<effectiveTime value="%Allergy3_Time%"/>
+								<entryRelationship typeCode="SUBJ">
+									<observation classCode="OBS" moodCode="EVN">
+										<templateId root="2.16.840.1.113883.10.20.1.18"/>
+										<id extension="4adc1020-7b14-11db-9fe1-0800200c9a66"/>
+										<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+										<statusCode code="completed"/>
+										<effectiveTime value="20110215"/>
+										<value xsi:type="CD" code="%Allergy3_TypeCode%" displayName="%Allergy3_TypeDisplay%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+										<participant typeCode="CSM">
+											<participantRole classCode="MANU">
+												<playingEntity classCode="MMAT">
+													<code code="%Allergy3_DrugCode%" codeSystem="%Allergy3_DrugCodeSystem%" displayName="%Allergy3_DrugDisplay%" codeSystemName="%Allergy3_DrugCodeSystemName%">
+														<originalText>
+															<reference value="%Allergy3_SubstanceReference%"/>
+														</originalText>
+													</code>
+												</playingEntity>
+											</participantRole>
+										</participant>
+										<entryRelationship typeCode="REFR">
+											<observation classCode="OBS" moodCode="EVN">
+												<code code="48766-0" displayName="Information Source" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+												<statusCode code="completed"/>
+												<value xsi:type="ST" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Unknown</value>
+											</observation>
+										</entryRelationship>
+										<entryRelationship typeCode="REFR">
+											<observation classCode="OBS" moodCode="EVN">
+												<templateId root="2.16.840.1.113883.10.20.1.39"/>
+												<templateId root="2.16.840.1.113883.10.20.1.57"/>
+												<code code="33999-4" displayName="Status" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+												<statusCode code="completed"/>
+												<value xsi:type="CE" code="%Allergy3_StatusCode%" codeSystem="2.16.840.1.113883.6.96" displayName="%Allergy3_StatusDisplay%" codeSystemName="SNOMED CT" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+													<originalText>
+														<reference value="%Allergy3_StatusReference%"/>
+													</originalText>
+												</value>
+											</observation>
+										</entryRelationship>
+										<entryRelationship typeCode="MFST" inversionInd="true">
+											<observation classCode="OBS" moodCode="EVN">
+												<templateId root="2.16.840.1.113883.10.20.1.54"/>
+												<code nullFlavor="NI"/>
+												<statusCode code="completed"/>
+												<value xsi:type="CD" code="%Allergy3_ReactionCode%" displayName="%Allergy3_ReactionDisplay%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+													<originalText>
+														<reference value="%Allergy3_ReactionReference%"/>
+													</originalText>
+												</value>
+												<entryRelationship typeCode="SUBJ">
+													<observation classCode="OBS" moodCode="EVN">
+														<templateId root="2.16.840.1.113883.10.20.1.55"/>
+														<code code="SEV" displayName="Severity Observation" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode"/>
+														<statusCode code="completed"/>
+														<value xsi:type="CD" code="%Allergy3_SeverityCode%" displayName="%Allergy3_SeverityDisplay%" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
+															<originalText>
+																<reference value="%Allergy3_SeverityReference%"/>
+															</originalText>
+														</value>
+													</observation>
+												</entryRelationship>
+												<entryRelationship typeCode="RSON">
+													<procedure classCode="PROC" moodCode="EVN">
+														<templateId root="2.16.840.1.113883.10.20.1.29"/>
+														<id nullFlavor="NI"/>
+														<code nullFlavor="NI" codeSystem="2.16.840.1.113883.6.1"/>
+														<statusCode nullFlavor="NI"/>
+														<effectiveTime nullFlavor="NA"/>
+													</procedure>
+												</entryRelationship>
+											</observation>
+										</entryRelationship>
+									</observation>
+								</entryRelationship>
+							</act>
+						</external>
+					</element>
+				</action-add>
+				<action-add location="cda:entry[3]">
+					<attribute name="typeCode" value="DRIV"/>
+				</action-add>
+			</instance>
+			<instance name="Result_AddComponent2" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[13]/cda:section" createNew="false">
+				<filter>
+					<specificRowCount section="Results" value="1,3,4,5,7,8"/>
+				</filter>
+				<action-add location="cda:entry/cda:organizer">
+					<element name="cda:component">
+						<external>
+							<observation classCode="OBS" moodCode="EVN" xmlns="urn:hl7-org:v3">
+								<templateId root="2.16.840.1.113883.10.20.1.31"/>
+								<id root="%Results_Observation2_Id%"/>
+								<code code="%Results_Observation2_Code%" displayName="%Results_Observation2_Display%" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC">
+									<originalText>
+										<reference value="#%Results_Observation2_Reference%"/>
+									</originalText>
+								</code>
+								<statusCode code="completed"/>
+								<effectiveTime value="%Results_Observation2_EffectiveTime%"/>
+								<value xsi:type="%Results_Observation2_ValueType%" value="%Results_Observation2_Value%" unit="%Results_Observation2_ValueUnit%"/>
+								<interpretationCode code="%Results_Observation2_Interpretation%" codeSystem="2.16.840.1.113883.5.83"/>
+								<referenceRange>
+									<observationRange>
+										<value xsi:type="%Results_Observation2_RangeValueType%">
+											<low value="%Results_Observation2_RangeValueLow%" unit="%Results_Observation2_RangeValueLowUnit%"/>
+											<high value="%Results_Observation2_RangeValueHigh%" unit="%Results_Observation2_RangeValueHighUnit%"/>
+										</value>
+									</observationRange>
+								</referenceRange>
+							</observation>
+						</external>
+					</element>
+				</action-add>
+			</instance>
+			
+			<instance name="Result_AddComponent3" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[15]/cda:section" createNew="false">
+				<action-add location="cda:entry/cda:organizer">
+					<element name="cda:component">
+						<external>
+							<observation classCode="OBS" moodCode="EVN" xmlns="urn:hl7-org:v3">
+								<templateId root="2.16.840.1.113883.10.20.1.31"/>
+								<id root="%VitalSigns_Observation2_Id%"/>
+								<code code="%VitalSigns_Observation2_TypeCode%" displayName="%VitalSigns_Observation2_TypeDisplay%" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+								<statusCode code="completed"/>
+								<effectiveTime value="%VitalSigns_Organizer_EffectiveTime%"/>
+								<value xsi:type="%VitalSigns_Observation2_ValueType%" value="%VitalSigns_Observation2_Value%" unit="%VitalSigns_Observation2_ValueUnit%"/>
+								<interpretationCode code="%VitalSigns_Observation2_Interpretation%" displayName="%VitalSigns_Observation2_InterpretationDisplay%" codeSystem="2.16.840.1.113883.5.83"/>
+								<referenceRange>
+									<observationRange>
+										<value xsi:type="%VitalSigns_Observation2_RefRangeType%">
+											<low value="%VitalSigns_Observation2_RefRangeLowValue%" unit="%VitalSigns_Observation2_RefRangeUnit%"/>
+											<high value="%VitalSigns_Observation2_RefRangeHighValue%" unit="%VitalSigns_Observation2_RefRangeUnit%"/>
+										</value>
+									</observationRange>
+								</referenceRange>
+							</observation>
+						</external>
+					</element>
+				</action-add>
+			</instance>
+			
+			<instance name="SocialHistory_RemoveEffectiveTimeHigh" createNew="false" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[14]/cda:section/cda:entry/cda:observation/cda:effectiveTime">
+				<filter>
+					<specificRowCount section="SocialHistory" value="4,5,9"/>
+				</filter>
+				<action-remove location="cda:high"/>
+			</instance>
+			
+			<instance name="FamilyHistory_RemoveCauseOfDeath" createNew="false" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[4]/cda:section/cda:entry/cda:organizer/cda:component/cda:observation">
+				<filter>
+					<specificRowCount section="FamilyHistory" value="4-8"/>
+				</filter>
+				<action-remove location="cda:entryRelationship"/>
+				<action-remove location="cda:templateId[@root='2.16.840.1.113883.10.20.1.42']"/>
+			</instance>
+		</instances>
+	</good>
+
+&header;
+
+&procedures;
+
+&plan_of_care;
+
+&medical_equipment;
+
+&social_history;
+
+&family_history;
+
+&problems;
+
+&allergies;
+
+&functional_status;
+
+&advance_directives;
+
+&payers;
+
+&medications;
+
+&results;
+
+&encounters;
+
+&immunizations;
+
+&other;
+
+	<bad>
+		<instances>
+			<instance name="GlobalFixes" createNew="false" rootContext="/cda:ClinicalDocument" isAbstract="true">
+				<inherit instanceName="FamilyHistory_RemoveCauseOfDeath"/>
+				<inherit instanceName="SocialHistory_RemoveEffectiveTimeHigh"/>
+			</instance>
+		</instances>
+	</bad>
+</ActionConfiguration>

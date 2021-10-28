@@ -1,0 +1,92 @@
+<bad xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ActionConfiguration-bad.xsd">
+	<instances>
+		<instance name="CONF-123_functional_status" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-123 (multiple section)" location="."/>
+			<action-add location=".">
+				<element>
+					<external>
+						<component xmlns="urn:hl7-org:v3">
+							<section>
+								<templateId root="2.16.840.1.113883.10.20.1.5"/>
+							</section>
+						</component>
+					</external>
+				</element>
+			</action-add>
+		</instance>
+		
+		<instance name="CONF-124_functional_status" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[5]/cda:section">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-124 (missing code)" location="."/>
+			<action-remove location="cda:code"/>
+		</instance>
+
+		<instance name="CONF-125_functional_status" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[5]/cda:section/cda:code">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-125 (incorrect code value)" location="."/>
+			<action-set location="@code" value="ABC"/>
+			<action-set location="@displayName" value="XYZ"/>
+		</instance>
+
+		<instance name="CONF-126_functional_status" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[5]/cda:section">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-126 (missing title)" location="."/>
+			<action-remove location="cda:title"/>
+		</instance>
+
+		<instance name="CONF-127_functional_status" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[5]/cda:section">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-127 (incorrect title value)" location="."/>
+			<action-set location="cda:title/text()" value="ABC"/>
+		</instance>
+
+		<instance name="CONF-128_functional_status" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[5]/cda:section">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-128 (missing code)" location="."/>
+			<action-remove location="cda:code"/>
+		</instance>
+
+		<instance name="CONF-133_functional_status" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[5]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:value[@xsi:type='CD']">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-133 (code system)" location="."/>
+			<action-set location="@codeSystem" value="XYZ"/>
+		</instance>
+		
+		<instance name="CONF-136_functional_status" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[5]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-136 (missing statusCode)" location="."/>
+			<action-remove location="cda:statusCode"/>
+		</instance>
+
+		<instance name="CONF-137_functional_status" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[5]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship/cda:observation">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-137 (missing statusCode)" location="."/>
+			<action-remove location="cda:statusCode"/>
+		</instance>
+
+		<instance name="CONF-138_functional_status" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[5]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship/cda:observation/cda:statusCode">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-138 (invalid status value)" location="."/>
+			<action-set location="@code" value="XYZ"/>
+		</instance>
+
+		<instance name="CONF-139_functional_status" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[5]/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:entryRelationship/cda:observation/cda:value">
+			<filter><randomRowCount/></filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-139 (invalid value value)" location="."/>
+			<action-set location="@code" value="XYZ"/>
+			<action-set location="@displayName" value="123"/>
+		</instance>
+	</instances>
+</bad>

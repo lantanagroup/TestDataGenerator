@@ -1,0 +1,58 @@
+<bad xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ActionConfiguration-bad.xsd">
+	<instances>
+		<!-- MEDICAL EQUIPMENT SECTION -->
+		<instance name="CONF-371_medical_equipment" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-add location=".">
+				<element name="cda:component">
+					<external>
+						<section xmlns="urn:hl7-org:v3">
+							<templateId root="2.16.840.1.113883.10.20.1.7"/>
+						</section>
+					</external>
+				</element>
+			</action-add>
+			<action-comment value="ERROR - CONF-371 (duplicate  medical equipment section)" location="cda:component[last()]"/>
+		</instance>
+		
+		<instance name="CONF-372_medical_equipment" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[7]/cda:section">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-372 (missing code)" location="."/>
+			<action-remove location="cda:code"/>
+		</instance>
+		
+		<instance name="CONF-373_medical_equipment" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[7]/cda:section/cda:code">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-373 (incorrect code)" location="."/>
+			<action-set location="@code" value="ABC"/>
+			<action-set location="@displayName" value="XYZ"/>
+		</instance>
+		
+		<instance name="CONF-374_medical_equipment" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[7]/cda:section">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-374 (missing title)" location="."/>
+			<action-remove location="cda:title"/>
+		</instance>
+		
+		<instance name="CONF-375_medical_equipment" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[7]/cda:section">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-375 (title not formatted properly)" location="cda:title"/>
+			<action-set location="cda:title/text()" value="ABC"/>
+		</instance>
+	</instances>
+</bad>

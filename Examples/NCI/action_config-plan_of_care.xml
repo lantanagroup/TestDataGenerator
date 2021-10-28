@@ -1,0 +1,102 @@
+<bad xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ActionConfiguration-bad.xsd">
+	<instances>
+		<!-- PLAN OF CARE SECTION -->
+
+		<instance name="CONF-480_plan_of_care" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-add location=".">
+				<element name="cda:component">
+					<external>
+						<section xmlns="urn:hl7-org:v3">
+							<templateId root="2.16.840.1.113883.10.20.1.10"/>
+						</section>
+					</external>
+				</element>
+			</action-add>
+			<action-comment value="ERROR - CONF-480 (duplicate  plan of care section)" location="cda:component[last()]"/>
+		</instance>
+		
+		<instance name="CONF-481_plan_of_care" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[10]/cda:section">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-481 (missing code)" location="."/>
+			<action-remove location="cda:code"/>
+		</instance>
+		
+		<instance name="CONF-482_plan_of_care" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[10]/cda:section/cda:code">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-482 (incorrect code)" location="."/>
+			<action-set location="@code" value="ABC"/>
+			<action-set location="@displayName" value="XYZ"/>
+		</instance>
+		
+		<instance name="CONF-483_plan_of_care" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[10]/cda:section">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-483 (missing title)" location="."/>
+			<action-remove location="cda:title"/>
+		</instance>
+		
+		<instance name="CONF-484_plan_of_care" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[10]/cda:section">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-484 (title not formatted properly)" location="cda:title"/>
+			<action-set location="cda:title/text()" value="ABC"/>
+		</instance>
+		
+		<instance name="CONF-485_plan_of_care" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[10]/cda:section/cda:entry">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-485 (missing procedure)" location="."/>
+			<action-remove location="cda:observation"/>
+			<action-add location=".">
+				<element>
+					<external>
+						<encounter classCode="ENC" moodCode="EVN" xmlns="urn:hl7-org:v3"/>
+					</external>
+				</element>
+			</action-add>
+		</instance>
+		
+		<instance name="CONF-486_plan_of_care" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[10]/cda:section/cda:entry/cda:observation">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-486 (missing id)" location="."/>
+			<action-remove location="cda:id"/>
+		</instance>
+		
+		<instance name="CONF-487_plan_of_care" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[10]/cda:section/cda:entry/cda:observation">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-487 (missing id)" location="."/>
+			<action-remove location="@moodCode"/>
+		</instance>
+		
+		<instance name="CONF-488-490_plan_of_care" rootContext="/cda:ClinicalDocument/cda:component/cda:structuredBody/cda:component[10]/cda:section/cda:entry/cda:observation">
+			<filter>
+				<randomRowCount/>
+			</filter>
+			<inherit instanceName="GlobalFixes"/>
+			<action-comment value="ERROR - CONF-488-490 (incorrect moodCode)" location="."/>
+			<action-set location="@moodCode" value="DEF"/>
+		</instance>	
+	</instances>
+</bad>
