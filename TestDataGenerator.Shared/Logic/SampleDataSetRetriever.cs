@@ -155,25 +155,33 @@ namespace LantanaGroup.TestDataGenerator.Shared.Logic
         {
             Token tempToken = null;
             Dictionary<string, Token> ret = new Dictionary<string, Token>();
+            int row = 0;
 
             while (reader.Read())
             {
-                if ((reader[0] != null) && (reader[1] != null) && (reader[2] != null))
+                row++;
+
+                String token = reader[0] != null ? reader[0].ToString() : null;
+                String sheet = reader[1] != null ? reader[1].ToString() : null;
+                String col = reader[2] != null ? reader[2].ToString() : null;
+
+                if (!String.IsNullOrEmpty(token) && !String.IsNullOrEmpty(sheet) && !String.IsNullOrEmpty(col))
                 {
                     try
                     {
-                        tempToken = new Token(reader[0].ToString(),
-                            reader[1].ToString(), int.Parse(reader[2].ToString()));
+                        tempToken = new Token(token, sheet, int.Parse(col));
                         ret.Add(tempToken.Name, tempToken);
                     }
-                    catch (Exception e)
+                    catch (Exception ex)
                     {
-                        throw new Exception("Unable to parse configuration tab!", e);
+                        Console.WriteLine("Can't parse row " + row + " of Configuration tab: " + ex.Message);
+                        continue;
                     }
                 }
                 else
                 {
-                    throw new Exception("Missing values in configuration tab!");
+                    Console.WriteLine("Skipping row " + row + ". Row not completed.");
+                    continue;
                 }
             }
 

@@ -259,7 +259,7 @@ namespace LantanaGroup.TestDataGenerator.Configurator
 
             try
             {
-                this.dataSet = SampleDataSetRetriever.GetFromOdbc(this.dataSourceLocation);
+                this.dataSet = SampleDataSetRetriever.GetFromOdbc("Driver={Microsoft Excel Driver (*.xls)};Dbq=" + this.dataSourceLocation);
             }
             catch { }
 
@@ -353,7 +353,7 @@ namespace LantanaGroup.TestDataGenerator.Configurator
 
                     this.namespacesList.DataSource = this.config.namespaces;
 
-                    this.Text = string.Format("{0} ({1})", this.Text, new FileInfo(this.configLocation).Name);
+                    this.Text = string.Format("Test Data Generator - Configurator ({0})", new FileInfo(this.configLocation).Name);
                     ShowActionControl(this.actionNoneControl, null);
                     DisplayInstances();
                     EnableForm(true);

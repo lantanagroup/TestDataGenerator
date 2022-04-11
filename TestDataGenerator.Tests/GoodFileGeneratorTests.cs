@@ -46,7 +46,7 @@ namespace LantanaGroup.TestDataGenerator
             DirectoryInfo outputLocation = new DirectoryInfo("C:\\temp");
             FileInfo masterFile = new FileInfo("C:\\nottemp\\awesome.xml");
 
-            string outputName = FileGenerator.GetOutputFileName(outputLocation, 2, masterFile);
+            string outputName = FileGenerator.GetOutputFileName(outputLocation, 2, masterFile, null, null, null);
 
             Assert.AreEqual("C:\\temp\\awesome_3.xml", outputName, "File names do not match!");
         }

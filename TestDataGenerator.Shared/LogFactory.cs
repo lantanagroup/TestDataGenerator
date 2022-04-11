@@ -71,14 +71,16 @@ namespace LantanaGroup.TestDataGenerator.Shared
                 }
 
                 string outputDirectory = Directory.GetParent(outputPath).FullName;
+                Stream messageLogStream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("LantanaGroup.TestDataGenerator.MessageLog.xslt");
 
-                using (StreamReader transformInputStream = new StreamReader(
-                    System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("LantanaGroup.TestDataGenerator.MessageLog.xslt")))
+                if (messageLogStream != null)
                 {
-                    using (StreamWriter transformOutputStream = new StreamWriter(
-                        Path.Combine(outputDirectory, "MessageLog.xslt")))
+                    using (StreamReader transformInputStream = new StreamReader(messageLogStream))
                     {
-                        transformOutputStream.Write(transformInputStream.ReadToEnd());
+                        using (StreamWriter transformOutputStream = new StreamWriter(Path.Combine(outputDirectory, "MessageLog.xslt")))
+                        {
+                            transformOutputStream.Write(transformInputStream.ReadToEnd());
+                        }
                     }
                 }
             }

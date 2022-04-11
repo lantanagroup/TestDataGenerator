@@ -144,7 +144,7 @@ namespace LantanaGroup.TestDataGenerator.Shared.Logic
                     if(areGood && ((instances == null) || (instances.Length == 0)))
                     {
                         //Create the output file
-                        outputPath = GetOutputFileName(outputLocation, i, masterFile);
+                        outputPath = GetOutputFileName(outputLocation, i, masterFile, null, dataSet, activeRowsData);
 
                         //Tokenize and write the resulting string
                         currentContent = TokenizeString(dataSet, activeRowsData, currentContent);
@@ -180,7 +180,7 @@ namespace LantanaGroup.TestDataGenerator.Shared.Logic
                                 tempDocument = (XmlDocument)originalDocument.Clone();
 
                                 //Create the output file
-                                outputPath = GetOutputFileName(outputLocation, i, masterFile, instance);
+                                outputPath = GetOutputFileName(outputLocation, i, masterFile, instance, dataSet, activeRowsData);
                             }
 
                             using (LogFactoryContext logContext = new LogFactoryContext(outputPath))
@@ -341,40 +341,33 @@ namespace LantanaGroup.TestDataGenerator.Shared.Logic
         /// <param name="masterFile">Main input file, us used as a name</param>
         /// <param name="instance">The instance to pull a name from</param>
         /// <returns></returns>
-        public static string GetOutputFileName(DirectoryInfo outputLocation, int index, FileInfo masterFile, Instance instance)
+        public static string GetOutputFileName(DirectoryInfo outputLocation, int index, FileInfo masterFile, Instance instance, SampleDataSet dataSet, Dictionary<string, string[]> activeRowsData)
         {
-            string fileName = "";
-
+            string filePath = "";
+            
             if (instance != null && instance.createNew && !String.IsNullOrEmpty(instance.name))
             {
-                fileName = instance.name + "_" + masterFile.Name.Substring(0, masterFile.Name.IndexOf(masterFile.Extension)) +
+                filePath = instance.name.Replace("/", "_") + "_" + masterFile.Name.Substring(0, masterFile.Name.IndexOf(masterFile.Extension)) +
                     "_" + (index + 1) + masterFile.Extension;
+            }
+            else if (dataSet != null && dataSet.Tokens.ContainsKey("%file_name%") && activeRowsData != null)
+            {
+                filePath = GetTokenValue(dataSet.Tokens["%file_name%"], activeRowsData);
+
+                if (!filePath.ToLower().EndsWith(masterFile.Extension))
+                    filePath += masterFile.Extension;
             }
             else
             {
-                fileName = masterFile.Name.Substring(0, masterFile.Name.IndexOf(masterFile.Extension)) +
+                filePath = masterFile.Name.Substring(0, masterFile.Name.IndexOf(masterFile.Extension)) +
                     "_" + (index + 1) + masterFile.Extension;
             }
 
-
-
 #if DEBUG
-            System.Console.WriteLine("Writing to file: " + fileName);
+            System.Console.WriteLine("Writing to file: " + filePath);
 #endif
 
-            return outputLocation.FullName + "\\" + fileName;
-        }
-
-        /// <summary>
-        /// Generates the output file name to write to
-        /// </summary>
-        /// <param name="outputLocation">Output directory</param>
-        /// <param name="index">Index of the file</param>
-        /// <param name="masterFile">Main input file, us used as a name</param>
-        /// <returns></returns>
-        public static string GetOutputFileName(DirectoryInfo outputLocation, int index, FileInfo masterFile)
-        {
-            return GetOutputFileName(outputLocation, index, masterFile, null);
+            return outputLocation.FullName + "\\" + filePath;
         }
 
 
@@ -578,6 +571,32 @@ namespace LantanaGroup.TestDataGenerator.Shared.Logic
             return ret;
         }
 
+        public static string GetTokenValue(Token token, Dictionary<string, string[]> activeRowsData)
+        {
+            string value = "";
+
+            //Ensure the section can be found
+            if (!activeRowsData.Keys.Contains(token.SectionName))
+            {
+                LogFactory.Log(LogFactory.Severities.Error, LogFactory.MessageTypes.Generation, string.Empty, "Unable to find section " + token.SectionName + " as specified in configuration.");
+                value = DefaultValue;
+            }
+            //Ensure the value can be found
+            else if (activeRowsData[token.SectionName].Length < token.Column)
+            {
+                LogFactory.Log(LogFactory.Severities.Error, LogFactory.MessageTypes.Generation, string.Empty, "Unable to find value in column " + token.Column
+                    + " in section " + token.SectionName + " as specified in configuration.");
+                value = DefaultValue;
+            }
+            else
+            {
+                //NOTE: Decrement column by one, assuming 1-based counting in config, 0-based in code
+                value = activeRowsData[token.SectionName][token.Column - 1];
+            }
+
+            return value;
+        }
+
         /// <summary>
         /// Perform a tokenization on the provided body of text using the given data
         /// </summary>
@@ -596,24 +615,7 @@ namespace LantanaGroup.TestDataGenerator.Shared.Logic
             {
                 token = dataSet.Tokens[key];
 
-                //Ensure the section can be found
-                if (!activeRowsData.Keys.Contains(token.SectionName))
-                {
-                    LogFactory.Log(LogFactory.Severities.Error, LogFactory.MessageTypes.Generation, string.Empty, "Unable to find section " + token.SectionName + " as specified in configuration.");
-                    value = DefaultValue;
-                }
-                //Ensure the value can be found
-                else if (activeRowsData[token.SectionName].Length < token.Column)
-                {
-                    LogFactory.Log(LogFactory.Severities.Error, LogFactory.MessageTypes.Generation, string.Empty, "Unable to find value in column " + token.Column
-                        + " in section " + token.SectionName + " as specified in configuration.");
-                    value = DefaultValue;
-                }
-                else
-                {
-                    //NOTE: Decrement column by one, assuming 1-based counting in config, 0-based in code
-                    value = activeRowsData[token.SectionName][token.Column - 1];
-                }
+                value = GetTokenValue(token, activeRowsData);
                         
                 //Replace all tokens
                 content = Regex.Replace(content, token.Name, value);

@@ -43,6 +43,8 @@ namespace LantanaGroup.TestDataGenerator.Shared
         /// <returns>A fixed string that has an absolute path for the files within it.</returns>
         public static string MakeAbsolutePath(string matchFileName, string input)
         {
+            if (String.IsNullOrEmpty(input)) return null;
+
             FileInfo matchFile = new FileInfo(matchFileName);
 
             try
