@@ -1,23 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE cd_page [
-<!ENTITY header SYSTEM "action_config-header.xml">
-<!ENTITY other SYSTEM "action_config-other.xml">
-<!ENTITY encounters SYSTEM "action_config-encounters.xml">
-<!ENTITY payers SYSTEM "action_config-payers.xml">
-<!ENTITY results SYSTEM "action_config-results.xml">
-<!ENTITY functional_status SYSTEM "action_config-functional_status.xml">
-<!ENTITY allergies SYSTEM "action_config-allergies.xml">
-<!ENTITY problems SYSTEM "action_config-problems.xml">
-<!ENTITY family_history SYSTEM "action_config-family_history.xml">
-<!ENTITY social_history SYSTEM "action_config-social_history.xml">
-<!ENTITY medical_equipment SYSTEM "action_config-medical_equipment.xml">
-<!ENTITY procedures SYSTEM "action_config-procedures.xml">
-<!ENTITY plan_of_care SYSTEM "action_config-plan_of_care.xml">
-<!ENTITY advance_directives SYSTEM "action_config-advance_directives.xml">
-<!ENTITY medications SYSTEM "action_config-medications.xml">
-<!ENTITY immunizations SYSTEM "action_config-immunizations.xml">
-]>
-<ActionConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Tool/ActionConfiguration.xsd">
+<ActionConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cda="urn:hl7-org:v3 ../../TestDataGenerator/schema/CDA.xsd" xsi:noNamespaceSchemaLocation="../../TestDataGenerator/ActionConfiguration.xsd">
+	<namespaces>
+		<namespace prefix="cda" uri="urn:hl7-org:v3" location="../../TestDataGenerator/schema/CDA.xsd" />
+	</namespaces>
 	<good>
 		<instances>
 			<!-- Removes the value from the advance directives. This can be removed later if it is determined the value will never be needed -->
@@ -290,38 +275,6 @@
 			</instance>
 		</instances>
 	</good>
-
-&header;
-
-&procedures;
-
-&plan_of_care;
-
-&medical_equipment;
-
-&social_history;
-
-&family_history;
-
-&problems;
-
-&allergies;
-
-&functional_status;
-
-&advance_directives;
-
-&payers;
-
-&medications;
-
-&results;
-
-&encounters;
-
-&immunizations;
-
-&other;
 
 	<bad>
 		<instances>

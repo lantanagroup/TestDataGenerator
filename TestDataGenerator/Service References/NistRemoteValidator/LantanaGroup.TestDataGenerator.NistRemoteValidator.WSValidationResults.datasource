@@ -6,5 +6,5 @@
     cause the file to be unrecognizable by the program.
 -->
 <GenericObjectDataSource DisplayName="WSValidationResults" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>LantanaGroup.TestDataGenerator.NistRemoteValidator.WSValidationResults, Service References.NistRemoteValidator.Reference.cs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+   <TypeInfo>LantanaGroup.TestDataGenerator.NistRemoteValidator.WSValidationResults, Service References.NistRemoteValidator.Reference.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>

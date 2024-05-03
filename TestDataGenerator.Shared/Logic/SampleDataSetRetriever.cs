@@ -56,7 +56,7 @@ namespace LantanaGroup.TestDataGenerator.Shared.Logic
                 foreach (DataRow row in tables.Rows)
                 {
                     string tableName = row["TABLE_NAME"].ToString();
-                    if (String.IsNullOrEmpty(tableName))
+                    if (String.IsNullOrEmpty(tableName) || tableName.EndsWith("_"))
                         continue;
 
                     Section section = new Section(tableName);

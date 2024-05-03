@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace LantanaGroup.TestDataGenerator.Configurator
@@ -15,6 +16,14 @@ namespace LantanaGroup.TestDataGenerator.Configurator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            /** To figure out the public key used for InternalsVisibleTo() 
+            var assemblyName = Assembly.GetExecutingAssembly().GetName();
+            Console.WriteLine("{0}, PublicKey={1}",
+                assemblyName.Name,
+            string.Join("", assemblyName.GetPublicKey().Select(m => string.Format("{0:x2}", m))));
+            **/
+
             Application.Run(new MainForm());
         }
     }
